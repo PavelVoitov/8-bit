@@ -1,0 +1,14 @@
+.description {
+    margin: 10px;
+}
+
+.fon {
+    height: 100px;
+    width: 100%;
+}
+
+.avatar {
+    height: 100px;
+    width: 100px;
+    background-color: #82c5ec;
+}

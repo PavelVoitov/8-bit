@@ -1,0 +1,22 @@
+
+.friendsSideBar {
+    display: grid;
+    grid-template-columns: repeat(1, 50px);
+    grid-template-rows: repeat(2, 2fr);
+    grid-column-gap: 10px;
+}
+
+.friendsSideBar div:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+
+.friendsSideBar img {
+    width: 30px;
+    height: 30px;
+}
+
+.friendsName {
+   font-size: 12px;
+}

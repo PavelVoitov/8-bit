@@ -1,0 +1,15 @@
+.header {
+    grid-area: head;
+    background-color: #064a90;
+}
+
+.header img {
+    width: 80px;
+}
+
+.title {
+    margin-bottom: 5px;
+    margin-left: 50%;
+    color: black;
+    font-weight: bold;
+}
