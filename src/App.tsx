@@ -3,13 +3,12 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import s from "./components/Dialogs/Dialogs.module.css";
 import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {state, StateType} from './redux/state';
+import {addPost, state, updateNewPostText} from './redux/state';
 
 function App() {
 
@@ -21,7 +20,10 @@ function App() {
               {/*<Profile />*/}
               <div className='appWrapperContent'>
                   <Route path={'/dialogs'} render={() => <Dialogs state={state.messagesPage}/>}/>
-                  <Route path={'/profile'} render={() => <Profile state={state.profilePage}/>}/>
+                  <Route path={'/profile'} render={() => <Profile profilePage={state.profilePage}
+                                                                  addPost={addPost}
+                                                                  updateNewPostText={updateNewPostText}/>}
+                  />
                   <Route path={'/news'} render={() => <News />}/>
                   <Route path={'/music'} render={() => <Music />}/>
                   <Route path={'/settings'} render={() => <Settings />}/>

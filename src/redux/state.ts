@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type PostType = {
     id: number
     message: string
@@ -25,6 +27,7 @@ export type FriendsType = {
 export type StateType = {
     profilePage: {
         post: Array<PostType>
+        newPostText: string
     }
     messagesPage: {
         dialogs: Array<DialogType>
@@ -36,25 +39,31 @@ export type StateType = {
 
 }
 
-export const state : StateType = {
+
+export const state: StateType = {
     profilePage: {
         post: [
             {id: 1, message: 'Hello!', likesCount: 2},
-            {id: 1, message: 'How are you?', likesCount: 17},
+            {id: 2, message: 'How are you?', likesCount: 17},
         ],
+        newPostText: ''
     },
     messagesPage: {
         dialogs: [
             {id: 1, name: "Andrew", avatar: 'https://avatarfiles.alphacoders.com/805/thumb-80545.jpg'},
             {id: 2, name: "Sasha", avatar: 'https://i.pinimg.com/1200x/3b/47/46/3b4746abc4c434aa915f0cd5bd3139e7.jpg'},
             {id: 3, name: "Boris", avatar: 'https://avatarfiles.alphacoders.com/111/111588.jpg'},
-            {id: 4, name: "Dima", avatar: 'https://kmesh.io/img/lists/97/avatar-10-ways-being-non-bender-is-actually-better-than-being-bender.jpg'},
+            {
+                id: 4,
+                name: "Dima",
+                avatar: 'https://kmesh.io/img/lists/97/avatar-10-ways-being-non-bender-is-actually-better-than-being-bender.jpg'
+            },
             {id: 5, name: "Tanya", avatar: 'https://crosti.ru/users/00/01/5b/55a53fe165/avatar.jpg'}
         ],
         messages: [
             {id: 1, message: 'Hello!', sender: 'I'},
             {id: 2, message: 'How are you?', sender: 'user'},
-            {id: 3, message: "I\'m fine. And you?", sender: 'I' },
+            {id: 3, message: "I\'m fine. And you?", sender: 'I'},
             {id: 4, message: 'Fine thanks. How is weather today in your city?', sender: 'user'},
             {id: 5, message: 'It\'s rainy today.', sender: 'I'},
             {id: 6, message: 'What are you doing?', sender: 'user'},
@@ -67,4 +76,23 @@ export const state : StateType = {
             {id: 3, name: "Boris", avatar: 'https://avatarfiles.alphacoders.com/111/111588.jpg'},
         ]
     }
+}
+
+// @ts-ignore
+window.state = state
+
+export const addPost = (post: string) => {
+    const newPost: PostType = {
+        id: 3,
+        message: state.profilePage.newPostText,
+        likesCount: 0
+    };
+    state.profilePage.post.push(newPost)
+    state.profilePage.newPostText = ''
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
 }

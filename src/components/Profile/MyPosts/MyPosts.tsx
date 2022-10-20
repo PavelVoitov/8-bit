@@ -1,30 +1,36 @@
-import React, {LegacyRef} from "react";
+import React, {ChangeEvent, LegacyRef} from "react";
 import c from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {PostType} from "../../../redux/state";
+import {PostType, updateNewPostText} from "../../../redux/state";
 
 
 
 type MyPostsProps = {
     post: Array<PostType>
+    newPostText: string
+    addPost: (post: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 export const MyPosts = (props: MyPostsProps) => {
 
-    let newPostElement  = React.createRef<HTMLTextAreaElement>()
-
     const addPost = () => {
-        if (newPostElement.current) {
-            let text = newPostElement.current?.value;
-            alert(text)
+            props.addPost(props.newPostText)
         }
+
+
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(e.currentTarget.value)
+
     }
 
     return (
             <div className={c.postsBlock}>
                 <h3>My posts</h3>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea
+                        onChange={onPostChange}
+                        value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Send</button>
