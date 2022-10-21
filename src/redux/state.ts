@@ -1,4 +1,4 @@
-import {rerenderEntireTree} from "../render";
+
 
 export type PostType = {
     id: number
@@ -39,8 +39,17 @@ export type StateType = {
 
 }
 
+export type StoreType = {
+    _state: StateType
+    updateNewPostText: (newText: string) => void
+    subscribe: (callback: () => void) => void
+    addPost: () => void
+    _callSubscriber: () => void
+    getState: () => StateType
+}
 
-export const state: StateType = {
+export const store: StoreType = {
+    _state: {
     profilePage: {
         post: [
             {id: 1, message: 'Hello!', likesCount: 2},
@@ -76,23 +85,33 @@ export const state: StateType = {
             {id: 3, name: "Boris", avatar: 'https://avatarfiles.alphacoders.com/111/111588.jpg'},
         ]
     }
+},
+    _callSubscriber() {
+        console.log(
+            'Not changes'
+        )
+    },
+    updateNewPostText(newText: string) {
+        this._state.profilePage.newPostText = newText
+        this._callSubscriber()
+    },
+    subscribe(callback) {
+        this._callSubscriber = callback
+    },
+    addPost() {
+        const newPost: PostType = {
+            id: Math.random() * 100,
+            message: this._state.profilePage.newPostText,
+            likesCount: 0
+        };
+        this._state.profilePage.post.push(newPost)
+        this._state.profilePage.newPostText = ''
+        this._callSubscriber()
+    },
+    getState() {
+        return this._state
+    }
 }
-
 // @ts-ignore
-window.state = state
+window.store = store
 
-export const addPost = (post: string) => {
-    const newPost: PostType = {
-        id: 3,
-        message: state.profilePage.newPostText,
-        likesCount: 0
-    };
-    state.profilePage.post.push(newPost)
-    state.profilePage.newPostText = ''
-    rerenderEntireTree(state)
-}
-
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText
-    rerenderEntireTree(state)
-}
