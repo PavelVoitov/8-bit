@@ -1,28 +1,29 @@
 import React, {ChangeEvent, LegacyRef} from "react";
 import c from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {PostType} from "../../../redux/state";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
+import {ActionsTypes, PostType} from "../../../redux/state";
 
 
 
 type MyPostsProps = {
     post: Array<PostType>
     newPostText: string
-    addPost: (post: string) => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
+
 
 export const MyPosts = (props: MyPostsProps) => {
 
     const addPost = () => {
-            props.addPost(props.newPostText)
+            props.dispatch(addPostAC(props.newPostText))
         }
 
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewPostText(e.currentTarget.value)
-
+        props.dispatch(updateNewPostTextAC(e.currentTarget.value))
     }
+
 
     return (
             <div className={c.postsBlock}>

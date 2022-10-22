@@ -2,48 +2,38 @@ import React from "react";
 import s from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {MessageItem} from "./Message/MessageItem";
-import {DialogType, MessageType} from "../../redux/state";
+import {ActionsTypes, DialogType, MessageType, StoreType} from "../../redux/state";
+import {MessageInput} from "./MessageInput/MessageInput";
+
 
 
 type DialogsType = {
-    state: {
-        dialogs: Array<DialogType>
-        messages: Array<MessageType>
-    }
-
+    store: StoreType
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const Dialogs = (props: DialogsType) => {
-    const {dialogs, messages} = props.state
-
-
-    const Message = React.createRef<HTMLTextAreaElement>()
-
-    const addMessage = () => {
-        let text = Message.current?.value
-        alert(text)
-    }
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {dialogs.map(el =>
+                {props.store._state.messagesPage.dialogs.map(el =>
                     <div className={s.users}>
                         <img src={el.avatar} alt="user"/>
                         <DialogItem name={el.name} id={el.id}/>
                     </div>)}
             </div>
             <div className={s.message}>
-                {messages.map(el =>
+                {props.store._state.messagesPage.messages.map(el =>
                     <MessageItem
                         message={el.message}
                         id={el.id}
                         sender={el.sender}
                     />)}
+               <MessageInput newMessage = {props.store._state.messagesPage.newMessage}
+                             dispatch={props.dispatch}/>
             </div>
             <div>
-                <textarea ref={Message}></textarea>
-                <button onClick={addMessage}>Send</button>
             </div>
         </div>
     )

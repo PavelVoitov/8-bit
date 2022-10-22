@@ -13,6 +13,8 @@ type MessagePropsType = {
 
 
 export const MessageItem = (props: MessagePropsType) => {
+
+
     const {message, id, sender} = props
     return (
         <div key={id} className={ sender === 'I' ? s.messageImg : s.messageUser}>
@@ -21,7 +23,6 @@ export const MessageItem = (props: MessagePropsType) => {
                 <div className={s.textMessage}>{message}</div>
             </div>
                 <div className={s.time}>10:00</div>
-
         </div>
     )
 }
