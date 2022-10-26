@@ -1,10 +1,18 @@
-import {ActionsTypes, PostType} from "./state";
+import {ActionsTypes, PostType} from "./store";
+
+const initialState =  {
+    post: [
+        {id: 1, message: 'Hello!', likesCount: 2},
+        {id: 2, message: 'How are you?', likesCount: 17},
+    ],
+        newPostText: ''
+}
 
 
 export const profileReducer = (state: {
     post: Array<PostType>
     newPostText: string
-}, action: ActionsTypes) => {
+} = initialState, action: ActionsTypes) => {
 
     switch (action.type) {
         case "ADD-POST":

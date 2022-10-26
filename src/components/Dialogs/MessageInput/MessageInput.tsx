@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 import {sendMessageAC,updateNewMessageAC} from "../../../redux/messages-reducer";
-import {ActionsTypes} from "../../../redux/state";
+import {ActionsTypes} from "../../../redux/store";
 
 type MessageInputPropsType = {
     dispatch: (action: ActionsTypes) => void

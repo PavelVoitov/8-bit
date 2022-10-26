@@ -1,4 +1,3 @@
-import {Action} from "redux";
 import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
 import {messagesReducer, sendMessageAC, updateNewMessageAC} from "./messages-reducer";
 import {sidebarReducer} from "./sidebar-reducer";

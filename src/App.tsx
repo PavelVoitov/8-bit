@@ -4,41 +4,47 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Profile} from "./components/Profile/Profile";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {ActionsTypes, StoreType} from "./redux/state";
+import {ActionsTypes} from "./redux/store";
+import {ReducersPropsType} from "./redux/redux-store";
+import {Store} from "redux";
 
-type PropsType = {
-    store: StoreType
+type AppPropsType = {
+    store: Store<ReducersPropsType>
     dispatch: (action: ActionsTypes) => void
 }
 
-const App: React.FC<PropsType> = (props) =>  {
 
-    const state = props.store.getState()
+const App = (props: AppPropsType) => {
+    const {
+        sidebar,
+        messagesPage,
+        profilePage
+    } = props.store.getState()
 
-  return (
+    return (
 
-          <div className="appwrapper">
-              <Header />
-              <Navbar state={state.sidebar}/>
-              {/*<Profile />*/}
-              <div className='appWrapperContent'>
-                  <Route path={'/dialogs'} render={() => <Dialogs store={props.store}
-                                                                  dispatch = {props.store.dispatch.bind(props.store)} />}/>
-                  <Route path={'/profile'} render={() => <Profile profilePage={state.profilePage}
-                                                                  dispatch = {props.store.dispatch.bind(props.store)}
-                                                                  />}
-                  />
-                  <Route path={'/news'} render={() => <News />}/>
-                  <Route path={'/music'} render={() => <Music />}/>
-                  <Route path={'/settings'} render={() => <Settings />}/>
-              </div>
-          </div>
+        <div className="appwrapper">
+            <Header/>
+            <Navbar state={sidebar}/>
+            <div className='appWrapperContent'>
+                <Route path={'/dialogs'} render={() => <Dialogs messagesPage={messagesPage}
+                                                                dispatch={props.dispatch.bind(props.store)}
+                />}/>
+                <Route path={'/profile'} render={() => <Profile profilePage={profilePage}
+                                                                dispatch={props.dispatch.bind(props.store)}
+                />}
+                />
+                <Route path={'/news'} render={() => <News/>}/>
+                <Route path={'/music'} render={() => <Music/>}/>
+                <Route path={'/settings'} render={() => <Settings/>}/>
+            </div>
+        </div>
 
-  );
+    );
 }
 
 export default App;
