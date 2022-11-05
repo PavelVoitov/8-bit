@@ -1,21 +1,22 @@
 import React, {ChangeEvent} from "react";
-import {sendMessageAC,updateNewMessageAC} from "../../../redux/messages-reducer";
-import {ActionsTypes} from "../../../redux/store";
+import {Store} from "redux";
+import {ReducersPropsType} from "../../../redux/redux-store";
 
 type MessageInputPropsType = {
-    dispatch: (action: ActionsTypes) => void
-    newMessage: string
+    store: Store<ReducersPropsType>
+    onMessageChange: (message: string) => void
+    addMessage: (newMessage: string) => void
 }
 
 
 export const MessageInput = (props: MessageInputPropsType) => {
 
     const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewMessageAC(e.currentTarget.value))
+        props.onMessageChange(e.currentTarget.value)
     }
 
     const addMessage = () => {
-        props.dispatch(sendMessageAC(props.newMessage))
+        props.addMessage(props.store.getState().messagesPage.newMessage)
     }
 
     return (
@@ -23,7 +24,7 @@ export const MessageInput = (props: MessageInputPropsType) => {
             <textarea
                 placeholder={'Enter your message...'}
                 onChange={onMessageChange}
-                value={props.newMessage}
+                value={props.store.getState().messagesPage.newMessage}
             ></textarea>
             <button onClick={addMessage}>Send</button>
         </div>
