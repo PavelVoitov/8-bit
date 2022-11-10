@@ -6,16 +6,20 @@ import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
 
-type ProfileType = {
-    store: Store<ReducersPropsType>
-}
+// type ProfileType = {
+//     store: Store<ReducersPropsType>
+// }
 
-export const Profile = (props: ProfileType) => {
-    const {store} = props
+export const Profile = (
+    // props: ProfileType
+) => {
+    // const {store} = props
     return (
         <div>
             <ProfileInfo />
-            <MyPostsContainer store={store}/>
+            <MyPostsContainer
+                // store={store}
+            />
         </div>
     )
 }

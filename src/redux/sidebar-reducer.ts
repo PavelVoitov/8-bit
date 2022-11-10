@@ -21,6 +21,5 @@ const initialState = {
 }
 
 export const sidebarReducer = (state: { friends: Array<FriendsType> } = initialState, action: ActionsTypes) => {
-    console.log(action)
     return state;
 }

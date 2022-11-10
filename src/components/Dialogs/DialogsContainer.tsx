@@ -3,22 +3,34 @@ import {Store} from "redux";
 import {ReducersPropsType} from "../../redux/redux-store";
 import {Dialogs} from "./Dialogs";
 import {sendMessageAC, updateNewMessageAC} from "../../redux/messages-reducer";
-
+import {StoreContext} from "../../StoreContext";
 
 
 type DialogsType = {
     store: Store<ReducersPropsType>
 }
 
-export const DialogsContainer = (props: DialogsType) => {
+export const DialogsContainer = (
+    // props: DialogsType
+) => {
 
-    const onMessageChange = (message: string) => {
-        props.store.dispatch(updateNewMessageAC(message))
-    }
 
-    const addMessage = () => {
-        props.store.dispatch(sendMessageAC(props.store.getState().messagesPage.newMessage))
-    }
+    return (
+        <StoreContext.Consumer>
+            {(store) => {
+                let state = store.getState()
+                const onMessageChange = (message: string) => {
+                    store.dispatch(updateNewMessageAC(message))
+                }
 
-    return <Dialogs store={props.store} onMessageChange={onMessageChange} addMessage={addMessage}/>
+                const addMessage = (newMessage: string) => {
+                    store.dispatch(sendMessageAC(newMessage))
+                }
+                return <Dialogs
+                    state={state}
+                    onMessageChange={onMessageChange}
+                    addMessage={addMessage}/>}}
+
+        </StoreContext.Consumer>
+    )
 }

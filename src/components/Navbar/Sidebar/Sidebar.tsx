@@ -6,7 +6,9 @@ type SidebarPropsType = {
         friends: Array<FriendsType>
 }
 
-export const Sidebar = (props: SidebarPropsType) => {
+export const Sidebar = (
+    props: SidebarPropsType
+) => {
     return (
         <div className={c.friendsSideBar}>
             <div>

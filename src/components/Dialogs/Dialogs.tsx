@@ -3,33 +3,34 @@ import s from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {MessageItem} from "./Message/MessageItem";
 import {MessageInput} from "./MessageInput/MessageInput";
-import {Store} from "redux";
-import {ReducersPropsType} from "../../redux/redux-store";
+import {StateType, StoreType} from "../../redux/store";
 
 
 
 type DialogsType = {
-    store: Store<ReducersPropsType>
+    state: StateType
     onMessageChange: (message: string) => void
     addMessage: (newMessage: string) => void
 }
 
-export const Dialogs = (props: DialogsType) => {
-    const { store } = props
+export const Dialogs = (
+    props: DialogsType
+) => {
+    const { state } = props
 
 
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {store.getState().messagesPage.dialogs.map(el =>
+                {state.messagesPage.dialogs.map(el =>
                     <div className={s.users}>
                         <img src={el.avatar} alt="user"/>
                         <DialogItem name={el.name} id={el.id}/>
                     </div>)}
             </div>
             <div className={s.message}>
-                {store.getState().messagesPage.messages.map(el =>
+                {state.messagesPage.messages.map(el =>
                     <MessageItem
                         message={el.message}
                         id={el.id}
@@ -38,7 +39,7 @@ export const Dialogs = (props: DialogsType) => {
                <MessageInput
                    onMessageChange={props.onMessageChange}
                    addMessage={props.addMessage}
-                   store={store}
+                   state={state}
 
                />
             </div>
