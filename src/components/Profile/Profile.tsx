@@ -1,7 +1,5 @@
 import React from "react";
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
-import {Store} from "redux";
-import {ReducersPropsType} from "../../redux/redux-store";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 

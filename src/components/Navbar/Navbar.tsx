@@ -2,7 +2,7 @@ import React from "react";
 import c from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 import {Sidebar} from "./Sidebar/Sidebar";
-import {StoreContext} from "../../StoreContext";
+import {store} from "../../redux/store";
 
 // type NavbarPropsType = {
 //     state: {
@@ -15,9 +15,8 @@ export const Navbar = (
     // props: NavbarPropsType
 ) => {
     return (
-        <StoreContext.Consumer>
-            {(store) => {
-                return  <nav className={c.nav}>
+
+       <nav className={c.nav}>
                     <div className={c.item}>
                         <NavLink to="/profile" activeClassName={c.activeLink}>Profile</NavLink>
                     </div>
@@ -39,8 +38,6 @@ export const Navbar = (
                         />
                     </div>
                 </nav>
-            }}
 
-        </StoreContext.Consumer>
     )
 }

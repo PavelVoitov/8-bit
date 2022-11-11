@@ -1,7 +1,20 @@
-import {ActionsTypes, DialogType, MessageType} from "./store";
+import {ActionsTypes} from "./store";
 
 
-const initialState = {
+export type DialogType = {
+    id: number
+    name: string
+    avatar: string
+}
+
+export type MessageType = {
+    id: number
+    message: string
+    sender: string
+}
+
+
+const initialState : MessagesType = {
     dialogs: [
         {id: 1, name: "Andrew", avatar: 'https://avatarfiles.alphacoders.com/805/thumb-80545.jpg'},
         {
@@ -17,7 +30,7 @@ const initialState = {
         },
         {id: 5, name: "Tanya", avatar: 'https://crosti.ru/users/00/01/5b/55a53fe165/avatar.jpg'}
     ],
-        messages: [
+    messages: [
         {id: 1, message: 'Hello!', sender: 'I'},
         {id: 2, message: 'How are you?', sender: 'user'},
         {id: 3, message: "I\'m fine. And you?", sender: 'I'},
@@ -25,14 +38,16 @@ const initialState = {
         {id: 5, message: 'It\'s rainy today.', sender: 'I'},
         {id: 6, message: 'What are you doing?', sender: 'user'},
     ],
-        newMessage: ''
+    newMessage: ''
 }
 
-export const messagesReducer = (state: {
+export type MessagesType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessage: string
-} = initialState, action: ActionsTypes) => {
+}
+
+export const messagesReducer = (state: MessagesType = initialState, action: ActionsTypes): MessagesType => {
 
     switch (action.type) {
         case "SEND-MESSAGE":
@@ -41,12 +56,15 @@ export const messagesReducer = (state: {
                 message: state.newMessage,
                 sender: 'I'
             }
-            state.messages.push(newMessage)
-            state.newMessage = ''
-            return state
+            const stateCopy = {...state};
+            stateCopy.messages.push(newMessage)
+            stateCopy.newMessage = ''
+            return stateCopy
         case "UPDATE-NEW-MESSAGE":
-            state.newMessage = action.newText
-            return state
+            return {
+                ...state,
+                newMessage: action.newText
+            }
         default:
             return state;
     }

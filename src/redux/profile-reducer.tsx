@@ -1,4 +1,17 @@
-import {ActionsTypes, PostType} from "./store";
+import {ActionsTypes} from "./store";
+
+
+
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+export type initialStatePropsType = {
+    post: Array<PostType>
+    newPostText: string
+}
 
 const initialState =  {
     post: [
@@ -9,10 +22,7 @@ const initialState =  {
 }
 
 
-export const profileReducer = (state: {
-    post: Array<PostType>
-    newPostText: string
-} = initialState, action: ActionsTypes) => {
+export const profileReducer = (state: initialStatePropsType = initialState, action: ActionsTypes): initialStatePropsType => {
 
     switch (action.type) {
         case "ADD-POST":
@@ -21,12 +31,16 @@ export const profileReducer = (state: {
                 message: state.newPostText,
                 likesCount: 0
             };
-            state.post.push(newPost)
-            state.newPostText = ''
-            return state
+            const stateCopy = {...state}
+            stateCopy.post.push(newPost)
+            stateCopy.newPostText = ''
+            return stateCopy
         case 'UPDATE-NEW-POST-TEXT':
-            state.newPostText = action.newText
-            return state
+            // state.newPostText = action.newText
+            return {
+                ... state,
+                newPostText: action.newText
+            }
         default:
             return state;
     }

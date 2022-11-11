@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import {StateType, store} from "./redux/store";
-import {Provider} from "./StoreContext";
+import {Provider} from "react-redux";
+import {store} from "./redux/redux-store";
 
 
-export const _callSubscriber = (state: StateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -18,12 +17,7 @@ export const _callSubscriber = (state: StateType) => {
         </BrowserRouter>,
         document.getElementById('root')
     );
-}
 
 
-_callSubscriber(store.getState())
 
-store.subscribe(() => {
-    let state = store.getState()
-    _callSubscriber(state)
-})
+

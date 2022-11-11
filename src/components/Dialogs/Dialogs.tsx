@@ -3,19 +3,18 @@ import s from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogsItem";
 import {MessageItem} from "./Message/MessageItem";
 import {MessageInput} from "./MessageInput/MessageInput";
-import {StateType, StoreType} from "../../redux/store";
+import {DialogsPropsType} from "./DialogsContainer";
 
 
 
-type DialogsType = {
-    state: StateType
-    onMessageChange: (message: string) => void
-    addMessage: (newMessage: string) => void
-}
+// type DialogsType = {
+//     state: StateType
+//     onMessageChange: (message: string) => void
+//     addMessage: (newMessage: string) => void
+// }
 
-export const Dialogs = (
-    props: DialogsType
-) => {
+
+export const Dialogs = (props: DialogsPropsType) => {
     const { state } = props
 
 

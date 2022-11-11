@@ -8,8 +8,19 @@
 }
 
 .title {
-    margin-bottom: 5px;
-    margin-left: 50%;
     color: black;
+    font-size: 20px;
     font-weight: bold;
+}
+
+.headerBlockImg {
+    display: inline-block;
+}
+
+.headerBlockSpan {
+    position: fixed;
+    display: inline-block;
+    margin-left: 50%;
+    margin-top: 5px;
+    padding: 20px;
 }
