@@ -18,7 +18,7 @@
 }
 
 .headerBlockSpan {
-    position: fixed;
+    position: absolute;
     display: inline-block;
     margin-left: 50%;
     margin-top: 5px;

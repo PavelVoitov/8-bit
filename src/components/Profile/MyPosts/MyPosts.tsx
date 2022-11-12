@@ -40,7 +40,7 @@ export const MyPosts = (props: MyPostsProps) => {
                 </div>
                 <div className={c.posts}>
                     {post.map(el =>
-                        <Post message={el.message} likesCount={el.likesCount}/>
+                        <Post key={el.id} message={el.message} likesCount={el.likesCount}/>
                     )}
 
                 </div>

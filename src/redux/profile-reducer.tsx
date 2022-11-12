@@ -31,12 +31,12 @@ export const profileReducer = (state: initialStatePropsType = initialState, acti
                 message: state.newPostText,
                 likesCount: 0
             };
-            const stateCopy = {...state}
-            stateCopy.post.push(newPost)
-            stateCopy.newPostText = ''
-            return stateCopy
+            return {
+                ...state,
+                newPostText: '',
+                post: [...state.post, newPost]
+            }
         case 'UPDATE-NEW-POST-TEXT':
-            // state.newPostText = action.newText
             return {
                 ... state,
                 newPostText: action.newText

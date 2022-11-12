@@ -56,10 +56,11 @@ export const messagesReducer = (state: MessagesType = initialState, action: Acti
                 message: state.newMessage,
                 sender: 'I'
             }
-            const stateCopy = {...state};
-            stateCopy.messages.push(newMessage)
-            stateCopy.newMessage = ''
-            return stateCopy
+            return {
+                ...state,
+                newMessage: '',
+                messages: [...state.messages, newMessage]
+            }
         case "UPDATE-NEW-MESSAGE":
             return {
                 ...state,

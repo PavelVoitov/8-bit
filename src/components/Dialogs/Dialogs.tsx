@@ -22,15 +22,16 @@ export const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {state.messagesPage.dialogs.map(el =>
-                    <div className={s.users}>
+                {state.dialogs.map(el =>
+                    <div className={s.users} key={el.id}>
                         <img src={el.avatar} alt="user"/>
                         <DialogItem name={el.name} id={el.id}/>
                     </div>)}
             </div>
             <div className={s.message}>
-                {state.messagesPage.messages.map(el =>
+                {state.messages.map(el =>
                     <MessageItem
+                        key={el.id}
                         message={el.message}
                         id={el.id}
                         sender={el.sender}
