@@ -4,7 +4,7 @@
     grid-template-areas:
   "head head"
   "nav content";
-    grid-template-rows: 80px 100vh;
+    grid-template-rows: 80px 200vh;
     grid-template-columns: 180px 10fr;
     font-family: 'Courier', monospace;
 }

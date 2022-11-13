@@ -1,14 +1,16 @@
 export type UserType = {
-    id: number
-    fotoUrl: string
-    followed: boolean,
-    fullName: string
-    status: string,
-    location: {
-        city: string,
-        country: string
-    }
+    "name": string,
+    "id": number,
+    "uniqueUrlName": null,
+    "photos": {
+    "small": null,
+        "large": null
+},
+    "status": null,
+    "followed": boolean
 }
+
+
 
 export type UsersType = {
     users: Array<UserType>
