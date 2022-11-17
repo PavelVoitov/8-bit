@@ -6,24 +6,21 @@ import axios from 'axios';
 import userPhoto from '../../assets/images/photosNull.png'
 
 
-export const Users = (props: UsersPropsType) => {
-    const {follow, unfollow, setUsers, usersPage} = props
+export class Users extends React.Component<UsersPropsType, {}>{
+    constructor(props: UsersPropsType) {
+        super(props);
 
-    const getUsers = () => {
-        if (usersPage.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users')
                 .then((response: { data: { items: UserType[]; }; }) => {
-                    console.log(response.data.items)
-                    setUsers(response.data.items)
+                    this.props.setUsers(response.data.items)
                 })
-        }
     }
 
 
-    return (
-        <div>
-            <button onClick={getUsers}>Get Users</button>
-            {usersPage.map(el => <div key={el.id}>
+    render() {
+        return(
+            <div>
+                {this.props.usersPage.map(el => <div key={el.id}>
                 <span>
                     <div>
                        <img src={el.photos.small !== null ? el.photos.small : userPhoto} alt="avatar"
@@ -31,21 +28,21 @@ export const Users = (props: UsersPropsType) => {
                     </div>
                     <div>
                         {el.followed
-                            ? <button onClick={() => unfollow(el.id)}>
+                            ? <button onClick={() => this.props.unfollow(el.id)}>
                                 Unfollow</button>
-                            : <button onClick={() => follow(el.id)}>
+                            : <button onClick={() => this.props.follow(el.id)}>
                                 Follow</button>}
                     </div>
                 </span>
 
-                <span>
+                    <span>
                          <span>
                             <div>{el.name}</div>
                             <div>{el.status}</div>
                         </span>
                     </span>
 
-                <span>
+                    <span>
                         <div>
                             {"el.location.country"}
                         </div>
@@ -53,7 +50,8 @@ export const Users = (props: UsersPropsType) => {
                             {"el.location.city"}
                         </div>
                 </span>
-            </div>)}
-        </div>
-    )
+                </div>)}
+            </div>
+        );
+    }
 }
