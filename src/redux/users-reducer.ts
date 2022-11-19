@@ -11,54 +11,29 @@ export type UserType = {
 }
 
 
-
 export type UsersType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
-const initialState : UsersType = {
-    users: [
-        // {
-        //     id: 1,
-        //     fotoUrl: 'https://image.api.playstation.com/cdn/UP4040/NPUB30943_00/XDd5XeDsvc7fxvTTiCjW9SMvI18fUBqn.png',
-        //     followed: true,
-        //     fullName: 'Dima',
-        //     status: "I'm reach",
-        //     location: {city: 'Novopolock', country: 'Belarus'}
-        // },
-        // {
-        //     id: 2,
-        //     fotoUrl: 'https://image.api.playstation.com/cdn/UP0102/BLUS30453_00/PdAJIYYdTFZ8UHh1jtw7Y1qSs5kMh7B4.png',
-        //     followed: false,
-        //     fullName: 'Senya',
-        //     status: "I'm stupid",
-        //     location: {city: 'Swily', country: 'Belarus'}
-        // },
-        // {
-        //     id: 3,
-        //     fotoUrl: 'https://avatars.cloudflare.steamstatic.com/04affbbc83f64433daef59fe38d61141615ad901_full.jpg',
-        //     followed: false,
-        //     fullName: 'Dina',
-        //     status: "I'm beach",
-        //     location: {city: 'Vitebsk', country: 'Belarus'}
-        // },
-        // {
-        //     id: 4,
-        //     fotoUrl: 'https://image.api.playstation.com/cdn/UP0102/BLUS30793_00/clGie1A7zDuwwnjKRqkgQw6pddGzhSsz.png',
-        //     followed: false,
-        //     fullName: 'Ignat',
-        //     status: "I'm gamer",
-        //     location: {city: 'Mohilew', country: 'Belarus'}
-        // },
 
-    ],
+const initialState : UsersType = {
+    users: [],
+    pageSize: 8,
+    totalUsersCount: 0,
+    currentPage: 1
+
 }
 
 type FollowAT = ReturnType<typeof followAC>
 type UnfollowAT = ReturnType<typeof unfollowAC>
 type SetUsersAT = ReturnType<typeof setUsersAC>
+type setCurrentPageAT = ReturnType<typeof setCurrentPageAC>
+type setTotalUsersCountAT = ReturnType<typeof setTotalUsersCountAC>
 
-export type UsersActionType = FollowAT | UnfollowAT | SetUsersAT
+export type UsersActionType = FollowAT | UnfollowAT | SetUsersAT | setCurrentPageAT | setTotalUsersCountAT
 export const usersReducer = (users: UsersType = initialState, action: UsersActionType): UsersType => {
 
     switch (action.type) {
@@ -79,10 +54,17 @@ export const usersReducer = (users: UsersType = initialState, action: UsersActio
         case 'SET-USERS':
             return {
                 ...users,
-                users: [...users.users, ...action.users]
+                users: action.users
             }
-
-
+        case 'SET-CURRENT-PAGE':
+            return {
+             ...users, currentPage: action.currentPage
+            }
+        case 'SET-TOTAL-USERS-COUNT':
+        return {
+            ...users,
+            totalUsersCount: action.totalCount
+        }
         default:
             return users;
     }
@@ -106,5 +88,18 @@ export const setUsersAC = (users: Array<UserType>) => {
     return {
         type: "SET-USERS",
         users
+    } as const
+}
+
+export const setCurrentPageAC = (currentPage : number) => {
+    return {
+        type: "SET-CURRENT-PAGE",
+        currentPage
+    } as const
+}
+    export const setTotalUsersCountAC = (totalCount : number) => {
+    return {
+        type: "SET-TOTAL-USERS-COUNT",
+        totalCount
     } as const
 }
