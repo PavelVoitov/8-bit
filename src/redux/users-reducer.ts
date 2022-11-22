@@ -3,9 +3,9 @@ export type UserType = {
     "id": number,
     "uniqueUrlName": null,
     "photos": {
-    "small": null,
+        "small": null,
         "large": null
-},
+    },
     "status": null,
     "followed": boolean
 }
@@ -16,14 +16,16 @@ export type UsersType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 
-const initialState : UsersType = {
+const initialState: UsersType = {
     users: [],
     pageSize: 8,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 
 }
 
@@ -32,8 +34,15 @@ type UnfollowAT = ReturnType<typeof unfollowAC>
 type SetUsersAT = ReturnType<typeof setUsersAC>
 type setCurrentPageAT = ReturnType<typeof setCurrentPageAC>
 type setTotalUsersCountAT = ReturnType<typeof setTotalUsersCountAC>
+type setIsFetchingAT = ReturnType<typeof setIsFetchingAC>
 
-export type UsersActionType = FollowAT | UnfollowAT | SetUsersAT | setCurrentPageAT | setTotalUsersCountAT
+export type UsersActionType = FollowAT
+                            | UnfollowAT
+                            | SetUsersAT
+                            | setCurrentPageAT
+                            | setTotalUsersCountAT
+                            | setIsFetchingAT
+
 export const usersReducer = (users: UsersType = initialState, action: UsersActionType): UsersType => {
 
     switch (action.type) {
@@ -58,13 +67,18 @@ export const usersReducer = (users: UsersType = initialState, action: UsersActio
             }
         case 'SET-CURRENT-PAGE':
             return {
-             ...users, currentPage: action.currentPage
+                ...users, currentPage: action.currentPage
             }
         case 'SET-TOTAL-USERS-COUNT':
-        return {
-            ...users,
-            totalUsersCount: action.totalCount
-        }
+            return {
+                ...users,
+                totalUsersCount: action.totalCount
+            }
+        case 'TOGGLE-IS-FETCHING':
+            return {
+                ...users,
+                isFetching: action.isFetching
+            }
         default:
             return users;
     }
@@ -91,15 +105,22 @@ export const setUsersAC = (users: Array<UserType>) => {
     } as const
 }
 
-export const setCurrentPageAC = (currentPage : number) => {
+export const setCurrentPageAC = (currentPage: number) => {
     return {
         type: "SET-CURRENT-PAGE",
         currentPage
     } as const
 }
-    export const setTotalUsersCountAC = (totalCount : number) => {
+
+export const setTotalUsersCountAC = (totalCount: number) => {
     return {
         type: "SET-TOTAL-USERS-COUNT",
         totalCount
+    } as const
+}
+export const setIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: "TOGGLE-IS-FETCHING",
+        isFetching
     } as const
 }
