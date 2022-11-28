@@ -1,7 +1,13 @@
 import React from 'react';
 import c from './Header.module.css'
+import {NavLink} from "react-router-dom";
 
-export const Header = () => {
+type HeaderPropsType = {
+    isAuth: boolean
+    login: string | null
+}
+
+export const Header = (props: HeaderPropsType) => {
     return (
         <header className={c.header}>
             <div className={c.headerBlockImg}>
@@ -9,6 +15,11 @@ export const Header = () => {
             </div>
             <div className={c.headerBlockSpan}>
                 <span className={c.title}>8-bit</span>
+            </div>
+            <div className={c.loginBlock}>
+                {props.isAuth ? props.login
+                    : <NavLink to={'/login'}>Login</NavLink>
+                }
             </div>
 
         </header>

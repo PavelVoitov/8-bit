@@ -1,4 +1,4 @@
-import {ActionsTypes} from "./store";
+
 
 
 export type DialogType = {
@@ -47,7 +47,12 @@ export type MessagesType = {
     newMessage: string
 }
 
-export const messagesReducer = (state: MessagesType = initialState, action: ActionsTypes): MessagesType => {
+type SendMessageAT = ReturnType<typeof sendMessageAC>
+type updateNewMessageAT = ReturnType<typeof updateNewMessageAC>
+
+export type MessagesActionType = SendMessageAT | updateNewMessageAT
+
+export const messagesReducer = (state: MessagesType = initialState, action: MessagesActionType): MessagesType => {
 
     switch (action.type) {
         case "SEND-MESSAGE":

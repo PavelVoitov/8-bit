@@ -3,6 +3,7 @@ import {Pagination} from "@mui/material";
 import userPhoto from "../../assets/images/photosNull.png";
 import c from "./Users.module.css";
 import {UserType} from "../../redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
 type UsersPropsType = {
     totalUsersCount: number
@@ -27,8 +28,11 @@ export const Users = (props: UsersPropsType) => {
                 {props.usersPage.map(el => <div key={el.id}>
                                 <span>
                                     <div>
-                                       <img src={el.photos.small !== null ? el.photos.small : userPhoto} alt="avatar"
-                                            className={c.img}/>
+                                        <NavLink to={"/profile/" + el.id}>
+                                             <img src={el.photos.small !== null ? el.photos.small : userPhoto} alt="avatar"
+                                                  className={c.img}/>
+                                        </NavLink>
+
                                     </div>
                                     <div>
                                         {el.followed

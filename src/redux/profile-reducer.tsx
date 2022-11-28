@@ -1,6 +1,24 @@
-import {ActionsTypes} from "./store";
 
-
+export type ProfilePropsType = {
+    "userId": number
+    "lookingForAJob": boolean
+    "lookingForAJobDescription": string
+    "fullName": string
+    "contacts": {
+        "github": string
+        "vk": string
+        "facebook": string
+        "instagram": string
+        "twitter": string
+        "website": string
+        "youtube": string
+        "mainLink": string
+    }
+    "photos": {
+        "small": string
+        "large": string
+    }
+} | null
 
 export type PostType = {
     id: number
@@ -8,12 +26,14 @@ export type PostType = {
     likesCount: number
 }
 
-export type initialStatePropsType = {
+export type ProfilePagePropsType = {
+    profile: ProfilePropsType
     post: Array<PostType>
     newPostText: string
 }
 
-const initialState =  {
+const initialState: ProfilePagePropsType =  {
+    profile: null,
     post: [
         {id: 1, message: 'Hello!', likesCount: 2},
         {id: 2, message: 'How are you?', likesCount: 17},
@@ -21,8 +41,13 @@ const initialState =  {
         newPostText: ''
 }
 
+type SetUserProfileAT = ReturnType<typeof setUserProfile>
+type UpdateNewPostTextAT = ReturnType<typeof updateNewPostTextAC>
+type AddPostAT = ReturnType<typeof addPostAC>
 
-export const profileReducer = (state: initialStatePropsType = initialState, action: ActionsTypes): initialStatePropsType => {
+type ProfileActionsTypes =  SetUserProfileAT | UpdateNewPostTextAT | AddPostAT
+
+export const profileReducer = (state: ProfilePagePropsType = initialState, action: ProfileActionsTypes): ProfilePagePropsType => {
 
     switch (action.type) {
         case "ADD-POST":
@@ -41,6 +66,11 @@ export const profileReducer = (state: initialStatePropsType = initialState, acti
                 ... state,
                 newPostText: action.newText
             }
+            case 'SET-USER-PROFILE':
+            return {
+                ... state,
+               profile: action.profile
+            }
         default:
             return state;
     }
@@ -57,5 +87,12 @@ export const updateNewPostTextAC = (newText: string) => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
         newText: newText
+    } as const
+}
+
+export const setUserProfile = (profile: ProfilePropsType) => {
+    return {
+        type: "SET-USER-PROFILE",
+        profile
     } as const
 }
