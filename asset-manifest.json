@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/8-bit/static/css/main.2b9ebc21.css",
-    "main.js": "/8-bit/static/js/main.80efff42.js",
+    "main.css": "/8-bit/static/css/main.333a23ae.css",
+    "main.js": "/8-bit/static/js/main.8179c13c.js",
     "static/media/kosmos.png": "/8-bit/static/media/kosmos.60f91a29d41e78c4bd35.png",
     "static/media/photosNull.png": "/8-bit/static/media/photosNull.caae2272401895c73563.png",
-    "static/media/avatar1.png": "/8-bit/static/media/avatar1.fe0360de9d9b5858934d.png",
     "static/media/logo.png": "/8-bit/static/media/logo.a0ea649694d60477cd42.png",
+    "static/media/Bean Eater-1.2s-211px.svg": "/8-bit/static/media/Bean Eater-1.2s-211px.41e2aceb87139581fe5712631d43bb05.svg",
     "index.html": "/8-bit/index.html",
-    "main.2b9ebc21.css.map": "/8-bit/static/css/main.2b9ebc21.css.map",
-    "main.80efff42.js.map": "/8-bit/static/js/main.80efff42.js.map"
+    "main.333a23ae.css.map": "/8-bit/static/css/main.333a23ae.css.map",
+    "main.8179c13c.js.map": "/8-bit/static/js/main.8179c13c.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b9ebc21.css",
-    "static/js/main.80efff42.js"
+    "static/css/main.333a23ae.css",
+    "static/js/main.8179c13c.js"
   ]
 }
