@@ -7,13 +7,6 @@ import {DialogsPropsType} from "./DialogsContainer";
 
 
 
-// type DialogsType = {
-//     state: StateType
-//     onMessageChange: (message: string) => void
-//     addMessage: (newMessage: string) => void
-// }
-
-
 export const Dialogs = (props: DialogsPropsType) => {
     const { state } = props
 
@@ -40,6 +33,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                    onMessageChange={props.onMessageChange}
                    addMessage={props.addMessage}
                    state={state}
+                   isAuth={props.isAuth}
 
                />
             </div>

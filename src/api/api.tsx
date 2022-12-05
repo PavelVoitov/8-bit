@@ -14,10 +14,25 @@ export const usersAPI = {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
     },
     unfollowUser(id: number){
-        return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`).then(response => response.data)
+        return instance.delete(`follow/${id}`).then(response => response.data)
     },
     followUser(id: number){
-        return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`).then(response => response.data)
+        return instance.post(`follow/${id}`).then(response => response.data)
+    },
+    getProfile(userId: string) {
+        return instance.get(`profile/${userId}`)
+            .then(response => response.data)
+    },
+    // setAuth() {
+    //     return  instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
+    //         .then(response => response.data)
+    // }
+}
+
+export const authAPI = {
+    setAuth() {
+        return instance.get(`auth/me`)
+            .then(response => response.data)
     }
 }
 
@@ -44,3 +59,13 @@ export const usersAPI = {
 //             "API-KEY": "19e10eb8-2dc0-4d81-9c3d-8b0abd71eea1"
 //         }}).then(response => response.data)
 // }
+
+
+export const getProfile = (userId: string) => {
+    if (!userId) {
+        userId = '2'
+    }
+    instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        .then(response => response.data)
+}
+

@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {authAPI} from "../api/api";
+
 
 export type AuthorType = {
     id: string | null
@@ -42,4 +45,12 @@ export const setAuthUserData = (id: string | null, email: string | null, login: 
     } as const
 }
 
-
+export const setAuthUserDataThunk = () => {
+    return (dispatch: Dispatch) => {
+        authAPI.setAuth()
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    let {id, email, login} = data.data
+                    dispatch(setAuthUserData(id, email, login))
+                }
+})}}
