@@ -4,10 +4,12 @@ import {Dialogs} from "./Dialogs";
 import {MessagesType, sendMessageAC, updateNewMessageAC} from "../../redux/messages-reducer";
 import {connect} from "react-redux";
 import {Dispatch} from 'redux'
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+
 
 type MapStateToPropsType = {
     state: MessagesType
-    isAuth: boolean
 }
 
 type MapDispatchToProps = {
@@ -17,10 +19,25 @@ type MapDispatchToProps = {
 
 export type DialogsPropsType = MapStateToPropsType & MapDispatchToProps
 
+type CommonPropsType = RouteComponentProps & DialogsPropsType
+
+class DialogsContainer extends React.Component<CommonPropsType, {}> {
+
+
+    render() {
+
+        return (<>
+                <div>
+                    <Dialogs {...this.props}/>
+                </div>
+            </>
+        )
+    }
+}
+
 const mapStateToProps = (state: ReducerPropsType): MapStateToPropsType => {
     return {
         state: state.messagesPage,
-        isAuth: state.auth.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
@@ -33,5 +50,7 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
         }
     }
 }
+const WithUrlDataContainerComponent = withRouter(DialogsContainer)
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs)
+
+export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps) (WithUrlDataContainerComponent))

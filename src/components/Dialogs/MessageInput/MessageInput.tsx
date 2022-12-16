@@ -1,12 +1,10 @@
 import React, {ChangeEvent} from "react";
 import {MessagesType} from "../../../redux/messages-reducer";
-import {Redirect} from "react-router-dom";
 
 type MessageInputPropsType = {
     state: MessagesType
     onMessageChange: (message: string) => void
     addMessage: (newMessage: string) => void
-    isAuth: boolean
 }
 
 
@@ -19,8 +17,6 @@ export const MessageInput = (props: MessageInputPropsType) => {
     const addMessage = () => {
         props.addMessage(props.state.newMessage)
     }
-
-   if (!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div>

@@ -33,7 +33,6 @@ export const Dialogs = (props: DialogsPropsType) => {
                    onMessageChange={props.onMessageChange}
                    addMessage={props.addMessage}
                    state={state}
-                   isAuth={props.isAuth}
 
                />
             </div>
