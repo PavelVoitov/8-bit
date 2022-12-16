@@ -2,10 +2,12 @@ import React from "react";
 import c from './ProfileInfo.module.css';
 import {ProfilePropsType} from "../../../../redux/profile-reducer";
 import {Preloader} from "../../../common/Preloader/Preloader";
+import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfoProps = {
     profile: ProfilePropsType
 }
+
 
 export const ProfileInfo = (props: ProfileInfoProps) => {
     if (props.profile === null) {
@@ -13,11 +15,11 @@ export const ProfileInfo = (props: ProfileInfoProps) => {
     }
     return (
         <div>
-            <img className={c.fon} src={require('../../../../assets/images/kosmos.png')} alt="rockets"/>
+            {/*<img className={c.fon} src={require('../../../../assets/images/kosmos.png')} alt="rockets"/>*/}
             <div className={c.description}>
                 <img className={c.avatar} src={props.profile.photos.large} alt="avatar"/>
                 <p>{props.profile.fullName}</p>
-               <div>{props.profile.lookingForAJobDescription}</div>
+                <ProfileStatus status={'Hello world!'}/>
                 <h2>Contacts:</h2>
                 <ul>
                     <li>{props.profile.contacts.vk}</li>
