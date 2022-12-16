@@ -3,7 +3,7 @@ import {ReducerPropsType} from "../../redux/redux-store";
 import {Dialogs} from "./Dialogs";
 import {MessagesType, sendMessageAC, updateNewMessageAC} from "../../redux/messages-reducer";
 import {connect} from "react-redux";
-import {Dispatch} from 'redux'
+import {compose, Dispatch} from 'redux'
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
@@ -50,7 +50,10 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {
         }
     }
 }
-const WithUrlDataContainerComponent = withRouter(DialogsContainer)
 
 
-export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps) (WithUrlDataContainerComponent))
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
+    withAuthRedirect,
+)(DialogsContainer)
