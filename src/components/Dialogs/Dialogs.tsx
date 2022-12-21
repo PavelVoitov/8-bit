@@ -30,7 +30,6 @@ export const Dialogs = (props: DialogsPropsType) => {
                         sender={el.sender}
                     />)}
                <MessageInput
-                   onMessageChange={props.onMessageChange}
                    addMessage={props.addMessage}
                    state={state}
 

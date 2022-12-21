@@ -1,4 +1,5 @@
 import axios from "axios";
+import {FormDataType} from "../components/Login/Login";
 
 
 const instance = axios.create({
@@ -29,6 +30,10 @@ export const authAPI = {
     setAuth() {
         return instance.get(`auth/me`)
             .then(response => response.data)
+    },
+    setLogin(formData: FormDataType) {
+        return instance.post('auth/login', formData)
+            .then(res => res.data)
     }
 }
 
@@ -44,5 +49,7 @@ export const profileAPI = {
         return instance.put('profile/status', {status})
     }
 }
+
+
 
 

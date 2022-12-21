@@ -38,19 +38,19 @@ const initialState : MessagesType = {
         {id: 5, message: 'It\'s rainy today.', sender: 'I'},
         {id: 6, message: 'What are you doing?', sender: 'user'},
     ],
-    newMessage: ''
+    // newMessage: ''
 }
 
 export type MessagesType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    newMessage: string
+    // newMessage: string
 }
 
 type SendMessageAT = ReturnType<typeof sendMessageAC>
-type updateNewMessageAT = ReturnType<typeof updateNewMessageAC>
 
-export type MessagesActionType = SendMessageAT | updateNewMessageAT
+
+export type MessagesActionType = SendMessageAT
 
 export const messagesReducer = (state: MessagesType = initialState, action: MessagesActionType): MessagesType => {
 
@@ -58,18 +58,12 @@ export const messagesReducer = (state: MessagesType = initialState, action: Mess
         case "SEND-MESSAGE":
             const newMessage: MessageType = {
                 id: Math.random(),
-                message: state.newMessage,
+                message: action.newMessage,
                 sender: 'I'
             }
             return {
                 ...state,
-                newMessage: '',
                 messages: [...state.messages, newMessage]
-            }
-        case "UPDATE-NEW-MESSAGE":
-            return {
-                ...state,
-                newMessage: action.newText
             }
         default:
             return state;
@@ -84,11 +78,5 @@ export const sendMessageAC = (newMessage: string) => {
     } as const
 }
 
-export const updateNewMessageAC = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-MESSAGE",
-        newText: newText
-    } as const
-}
 
 

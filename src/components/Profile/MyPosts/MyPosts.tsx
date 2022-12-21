@@ -1,49 +1,40 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import c from './MyPosts.module.css';
 import {Post} from "./Post/Post";
 import {PostType} from "../../../redux/profile-reducer";
-
-
+import {AddPostReduxForm, FormPostDataType} from "./Post/AddPostForm";
 
 
 type MyPostsProps = {
     post: Array<PostType>
-    newPostText: string
-    updateNewPostText: (text: string) => void
+    // newPostText: string
     addPost: (newPostText: string) => void
 }
 
 
 export const MyPosts = (props: MyPostsProps) => {
-    const {post, newPostText, updateNewPostText, addPost} = props
+    const {post, addPost} = props
 
-    const onAddPost = () => {
-        addPost(newPostText)
-        }
-
-
-    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        updateNewPostText(e.currentTarget.value)
+    const onAddPost = (values: FormPostDataType) => {
+        addPost(values.post)
     }
 
 
-    return (
-            <div className={c.postsBlock}>
-                <h3>My posts</h3>
-                <div>
-                    <textarea
-                        onChange={onPostChange}
-                        value={props.newPostText}/>
-                </div>
-                <div>
-                    <button onClick={onAddPost}>Send</button>
-                </div>
-                <div className={c.posts}>
-                    {post.map(el =>
-                        <Post key={el.id} message={el.message} likesCount={el.likesCount}/>
-                    )}
+    // const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    //     updateNewPostText(e.currentTarget.value)
+    // }
 
-                </div>
+
+    return (
+        <div className={c.postsBlock}>
+            <h3>My posts</h3>
+            <AddPostReduxForm onSubmit={onAddPost} />
+            <div className={c.posts}>
+                {post.map(el =>
+                    <Post key={el.id} message={el.message} likesCount={el.likesCount}/>
+                )}
+
             </div>
+        </div>
     )
 }

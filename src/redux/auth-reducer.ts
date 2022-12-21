@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
+import {FormDataType} from "../components/Login/Login";
 
 
 export type AuthorType = {
@@ -54,3 +55,20 @@ export const setAuthUserDataThunk = () => {
                     dispatch(setAuthUserData(id, email, login))
                 }
 })}}
+
+export const setLoginUserData = (id: string) => {
+    return {
+        type: 'SET-USER-LOGIN',
+        data: {id}
+    } as const
+}
+
+export const setLoginUserDataThunk = (formData: FormDataType) => {
+    return (dispatch: Dispatch) => {
+        authAPI.setLogin(formData)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    let {userId} = data.data
+                    dispatch(setLoginUserData(userId))
+                }
+            })}}

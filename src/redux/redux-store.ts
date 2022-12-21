@@ -20,3 +20,6 @@ const reducer = combineReducers({
 
 
 export const store: Store<ReducerPropsType> = legacy_createStore(reducer, applyMiddleware(thunkMiddleware))
+
+// @ts-ignore
+window.store = store

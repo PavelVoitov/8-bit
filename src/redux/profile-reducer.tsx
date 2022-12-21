@@ -31,7 +31,7 @@ export type PostType = {
 export type ProfilePagePropsType = {
     profile: ProfilePropsType
     post: Array<PostType>
-    newPostText: string
+    // newPostText: string
     status: string
 }
 
@@ -40,17 +40,16 @@ const initialState: ProfilePagePropsType = {
         {id: 1, message: 'Hello!', likesCount: 2},
         {id: 2, message: 'How are you?', likesCount: 17},
     ],
-    newPostText: '',
+    // newPostText: '',
     profile: null,
     status: ''
 }
 
 type SetUserProfileAT = ReturnType<typeof setUserProfile>
-type UpdateNewPostTextAT = ReturnType<typeof updateNewPostTextAC>
 type AddPostAT = ReturnType<typeof addPostAC>
 type SetStatus = ReturnType<typeof setStatus>
 
-type ProfileActionsTypes = SetUserProfileAT | UpdateNewPostTextAT | AddPostAT | SetStatus
+type ProfileActionsTypes = SetUserProfileAT | AddPostAT | SetStatus
 
 export const profileReducer = (state: ProfilePagePropsType = initialState, action: ProfileActionsTypes): ProfilePagePropsType => {
 
@@ -58,18 +57,12 @@ export const profileReducer = (state: ProfilePagePropsType = initialState, actio
         case "ADD-POST":
             const newPost: PostType = {
                 id: Math.random() * 100,
-                message: state.newPostText,
+                message: action.newPost,
                 likesCount: 0
             };
             return {
                 ...state,
-                newPostText: '',
                 post: [...state.post, newPost]
-            }
-        case 'UPDATE-NEW-POST-TEXT':
-            return {
-                ...state,
-                newPostText: action.newText
             }
         case 'SET-USER-PROFILE':
             return {
@@ -92,12 +85,7 @@ export const addPostAC = (newPost: string) => {
         newPost: newPost
     } as const
 }
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newText: newText
-    } as const
-}
+
 export const setStatus = (status: string) => {
     return {
         type: "SET-STATUS",
