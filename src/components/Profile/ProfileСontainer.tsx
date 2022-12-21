@@ -1,7 +1,7 @@
 import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile, ProfilePropsType, setUserProfile} from "../../redux/profile-reducer";
+import {getStatus, getUserProfile, ProfilePropsType, setUserProfile, updateStatus} from "../../redux/profile-reducer";
 import {ReducerPropsType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
@@ -10,11 +10,14 @@ import {compose} from "redux";
 
 type MapStateToPropsType = {
     profile: ProfilePropsType
+    status: string
 }
 
 export type ProfileContainerPropsType = MapStateToPropsType & {
     setUserProfile: (profile: ProfilePropsType) => void
     getUserProfile: (userId: string) => void
+    getStatus: (status: string) => void
+    updateStatus: (status: string) => void
 }
 
 type PathParamsProps = {
@@ -28,16 +31,17 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '2'
+            userId = '26297'
         }
         this.props.getUserProfile(userId)
+        this.props.getStatus(userId)
     }
 
     render() {
 
         return (<>
                 <div>
-                    <Profile {...this.props} profile={this.props.profile}/>
+                    <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
                 </div>
         </>
         )
@@ -49,9 +53,16 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
 let mapStateToProps = (state: ReducerPropsType) => {
     return {
         profile: state.profilePage.profile,
+        status: state.profilePage.status
     }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps, {setUserProfile, getUserProfile}),
+export default compose<React.ComponentType>(connect(mapStateToProps,
+        {
+            setUserProfile,
+            getUserProfile,
+            getStatus,
+            updateStatus,
+        }),
     withRouter,
     )(ProfileContainer)

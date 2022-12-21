@@ -20,13 +20,9 @@ export const usersAPI = {
         return instance.post(`follow/${id}`).then(response => response.data)
     },
     getProfile(userId: string) {
-        return instance.get(`profile/${userId}`)
-            .then(response => response.data)
+        console.warn('Obsolete method.')
+        return profileAPI.getProfile(userId)
     },
-    // setAuth() {
-    //     return  instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
-    //         .then(response => response.data)
-    // }
 }
 
 export const authAPI = {
@@ -36,36 +32,17 @@ export const authAPI = {
     }
 }
 
-// export const getUsers = (currentPage: number, pageSize: number) => {
-//     return instance.get(`users?page=${currentPage}&count=${pageSize}`,
-//         {
-//             withCredentials: true
-//         }).then(response => response.data)
-// }
-
-// const unfollowUser = (id: number) => {
-//     return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,{
-//         withCredentials: true,
-//         headers: {
-//             "API-KEY": "19e10eb8-2dc0-4d81-9c3d-8b0abd71eea1"
-//         }
-//     }).then(response => response.data)
-// }
-
-// export const followUser = (id: number) => {
-//     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,{
-//         withCredentials: true,
-//         headers: {
-//             "API-KEY": "19e10eb8-2dc0-4d81-9c3d-8b0abd71eea1"
-//         }}).then(response => response.data)
-// }
-
-
-export const getProfile = (userId: string) => {
-    if (!userId) {
-        userId = '2'
+export const profileAPI = {
+    getProfile(userId: string) {
+        return instance.get(`profile/${userId}`)
+            .then(response => response.data)
+    },
+    getStatus(userId: string) {
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(status: string) {
+        return instance.put('profile/status', {status})
     }
-    instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-        .then(response => response.data)
 }
+
 
