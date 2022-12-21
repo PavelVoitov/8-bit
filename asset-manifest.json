@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/8-bit/static/css/main.333a23ae.css",
-    "main.js": "/8-bit/static/js/main.176a00a0.js",
+    "main.js": "/8-bit/static/js/main.f78a2896.js",
     "static/media/photosNull.png": "/8-bit/static/media/photosNull.caae2272401895c73563.png",
     "static/media/logo.png": "/8-bit/static/media/logo.a0ea649694d60477cd42.png",
     "static/media/Bean Eater-1.2s-211px.svg": "/8-bit/static/media/Bean Eater-1.2s-211px.41e2aceb87139581fe5712631d43bb05.svg",
     "index.html": "/8-bit/index.html",
     "main.333a23ae.css.map": "/8-bit/static/css/main.333a23ae.css.map",
-    "main.176a00a0.js.map": "/8-bit/static/js/main.176a00a0.js.map"
+    "main.f78a2896.js.map": "/8-bit/static/js/main.f78a2896.js.map"
   },
   "entrypoints": [
     "static/css/main.333a23ae.css",
-    "static/js/main.176a00a0.js"
+    "static/js/main.f78a2896.js"
   ]
 }
