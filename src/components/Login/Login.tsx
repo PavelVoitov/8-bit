@@ -6,6 +6,7 @@ import {required} from "../../utils/validators/validators";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {ReducerPropsType} from "../../redux/redux-store";
+import s from '../common/FormsControls/FormControls.module.css'
 
 
 export type FormDataType = {
@@ -14,7 +15,7 @@ export type FormDataType = {
     rememberMe: boolean
 }
 
-interface LoginDataFormPropsType {
+export type  LoginDataFormPropsType = {
     onSubmit: (values: FormDataType) => void
 }
 
@@ -44,8 +45,10 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginDataFormPr
                        validate={[required]}
                 /> remember me
             </div>
-            <div>
-            </div>
+            {props.error &&
+                <div className={s.formSummaryError}>
+                    {props.error}
+                </div>}
             <div>
                 <button>Login</button>
             </div>
@@ -54,7 +57,6 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginDataFormPr
 }
 
 const LoginReduxForm = reduxForm<FormDataType, LoginDataFormPropsType>({form: 'login'})(LoginForm)
-
 
 
 type LoginPropsType = {
@@ -68,7 +70,7 @@ const Login = (props: LoginPropsType & MapStateToProps) => {
     }
 
     if (props.isAuth) {
-      return <Redirect to={'/profile'}/>
+        return <Redirect to={'/profile'}/>
     }
     return (
         <div>

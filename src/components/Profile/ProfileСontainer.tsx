@@ -11,6 +11,8 @@ import {compose} from "redux";
 type MapStateToPropsType = {
     profile: ProfilePropsType
     status: string
+    authorizedUserId: string
+    isAuth: boolean
 }
 
 export type ProfileContainerPropsType = MapStateToPropsType & {
@@ -31,7 +33,7 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '26297'
+            userId = this.props.authorizedUserId
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -41,7 +43,11 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
 
         return (<>
                 <div>
-                    <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+                    <Profile {...this.props}
+                             profile={this.props.profile}
+                             status={this.props.status}
+                             updateStatus={this.props.updateStatus}
+                    />
                 </div>
         </>
         )
@@ -53,7 +59,9 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
 let mapStateToProps = (state: ReducerPropsType) => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        authorizedUserId: state.auth.id,
+        isAuth: state.auth.isAuth
     }
 }
 
