@@ -7,7 +7,6 @@ import {AddPostReduxForm, FormPostDataType} from "./Post/AddPostForm";
 
 type MyPostsProps = {
     post: Array<PostType>
-    // newPostText: string
     addPost: (newPostText: string) => void
 }
 

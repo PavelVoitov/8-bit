@@ -49,7 +49,7 @@ type SetUserProfileAT = ReturnType<typeof setUserProfile>
 type AddPostAT = ReturnType<typeof addPostAC>
 type SetStatus = ReturnType<typeof setStatus>
 
-type ProfileActionsTypes = SetUserProfileAT | AddPostAT | SetStatus
+export type ProfileActionsTypes = SetUserProfileAT | AddPostAT | SetStatus
 
 export const profileReducer = (state: ProfilePagePropsType = initialState, action: ProfileActionsTypes): ProfilePagePropsType => {
 
