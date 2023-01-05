@@ -11,7 +11,6 @@ import React from 'react';
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {withRouter} from "react-router-dom";
 
 
@@ -82,7 +81,7 @@ export default compose<React.ComponentType>(
     getUsers
 }),
     withRouter,
-    withAuthRedirect,
+    // withAuthRedirect,
 )(UsersContainer)
 
 

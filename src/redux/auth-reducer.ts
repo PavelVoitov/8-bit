@@ -50,7 +50,7 @@ export const setAuthUserData = (id: string | null, email: string | null, login: 
 
 export const getAuthUserDataThunk = () => {
     return (dispatch: Dispatch) => {
-        authAPI.setAuth()
+      return authAPI.setAuth()
             .then((data) => {
                 if (data.resultCode === 0) {
                     let {id, email, login} = data.data
