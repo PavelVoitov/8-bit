@@ -43,7 +43,6 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
     }
 
     render() {
-
         return (<>
                 <div>
                     <Profile {...this.props}
