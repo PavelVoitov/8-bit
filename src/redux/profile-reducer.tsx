@@ -40,7 +40,6 @@ const initialState: ProfilePagePropsType = {
         {id: 1, message: 'Hello!', likesCount: 2},
         {id: 2, message: 'How are you?', likesCount: 17},
     ],
-    // newPostText: '',
     profile: null,
     status: ''
 }
