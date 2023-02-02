@@ -17,7 +17,7 @@ export type MyPostsContainer = MapStateToPropsType & MapDispatchToProps
 
 const mapStateToProps = (state: ReducerPropsType): MapStateToPropsType => {
     return {
-        post: state.profilePage.post,
+        post: state.profilePage.posts,
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToProps => {

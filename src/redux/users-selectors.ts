@@ -12,7 +12,6 @@ export const getUsersSuperSelector = createSelector(getUsersSelector, (users:  U
 })
 
 
-
 export const getPageSize = (state: ReducerPropsType) => {
     return state.usersPage.pageSize;
 }

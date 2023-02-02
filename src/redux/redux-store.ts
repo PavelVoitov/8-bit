@@ -20,9 +20,7 @@ const reducer = combineReducers({
     form: formReducer
 })
 
-
 export const store: Store<ReducerPropsType> = legacy_createStore(reducer, applyMiddleware(thunkMiddleware))
-
 
 export type AppActionsType = MessagesActionType | ProfileActionsTypes | UsersActionType | InitializedAppActionType
 

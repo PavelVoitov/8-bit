@@ -19,10 +19,10 @@ export type  LoginDataFormPropsType = {
     onSubmit: (values: FormDataType) => void
 }
 
-export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginDataFormPropsType> & LoginDataFormPropsType> = (props) => {
+export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginDataFormPropsType> & LoginDataFormPropsType> = ({handleSubmit, error}) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder={'Email'}
                        component={Input}
@@ -45,9 +45,9 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginDataFormPr
                        validate={[required]}
                 /> remember me
             </div>
-            {props.error &&
+            {error &&
                 <div className={s.formSummaryError}>
-                    {props.error}
+                    {error}
                 </div>}
             <div>
                 <button>Login</button>

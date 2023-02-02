@@ -2,7 +2,6 @@ import {ReducerPropsType} from "../../redux/redux-store";
 import {
     follow, requestUsers,
     setCurrentPage,
-    toggleFollowingProgress,
     unfollow,
     UserType
 } from "../../redux/users-reducer";
@@ -35,7 +34,6 @@ export type UsersPropsType = MapStateToPropsType & {
     follow: (id: number) => void
     unfollow: (id: number) => void
     setCurrentPage: (pageNumber: number) => void
-    toggleFollowingProgress: (isFetching: boolean, id: number) => void
     requestUsers: (currentPage: number, pageSize: number) => void
 
 }
@@ -43,12 +41,14 @@ export type UsersPropsType = MapStateToPropsType & {
 class UsersContainer extends React.Component<UsersPropsType, {}> {
 
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.requestUsers(currentPage, pageSize)
     }
 
 
     onPageChanged = (pageNumber: number) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.requestUsers(pageNumber, pageSize)
     }
 
     render() {
@@ -63,22 +63,10 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
                 followingInProgress={this.props.followingInProgress}
-                toggleFollowingProgress={this.props.toggleFollowingProgress}
             />
         </>
     }
 }
-
-// const mapStateToProps = (state: ReducerPropsType): MapStateToPropsType => {
-//     return {
-//         usersPage: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
 
 const mapStateToProps = (state: ReducerPropsType): MapStateToPropsType => {
     return {
@@ -96,32 +84,7 @@ export default compose<React.ComponentType>(
         follow,
         unfollow,
         setCurrentPage,
-        toggleFollowingProgress,
         requestUsers
     }),
     withRouter,
-    // withAuthRedirect,
 )(UsersContainer)
-
-
-// export default withAuthRedirect(withRouter(connect(mapStateToProps, {
-//     follow,
-//     unfollow,
-//     setCurrentPage,
-//     toggleFollowingProgress,
-//     getUsers
-// })
-// (UsersContainer)))
-
-
-// export default compose(
-//     withAuthRedirect,
-//     connect(mapStateToProps,
-//         {
-//             follow,
-//             unfollow,
-//             setCurrentPage,
-//             toggleFollowingProgress,
-//             getUsers
-//         }))
-// (UsersContainer)
