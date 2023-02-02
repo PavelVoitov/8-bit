@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import c from './MyPosts.module.css';
 import {Post} from "./Post/Post";
 import {PostType} from "../../../redux/profile-reducer";
@@ -11,29 +11,22 @@ type MyPostsProps = {
 }
 
 
-export const MyPosts = (props: MyPostsProps) => {
+export const MyPosts = memo((props: MyPostsProps) => {
     const {post, addPost} = props
 
     const onAddPost = (values: FormPostDataType) => {
         addPost(values.post)
     }
 
-
-    // const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    //     updateNewPostText(e.currentTarget.value)
-    // }
-
-
     return (
         <div className={c.postsBlock}>
             <h3>My posts</h3>
-            <AddPostReduxForm onSubmit={onAddPost} />
+            <AddPostReduxForm onSubmit={onAddPost}/>
             <div className={c.posts}>
                 {post.map(el =>
                     <Post key={el.id} message={el.message} likesCount={el.likesCount}/>
                 )}
-
             </div>
         </div>
     )
-}
+})
