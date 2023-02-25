@@ -2,18 +2,16 @@ import React from "react";
 import {Pagination} from "@mui/material";
 
 type PaginatorPropsType = {
-    totalUsersCount: number
+    totalItemsCount: number
     pageSize: number
     onPageChanged: (pageNumber: number) => void
+    currentPage: number
 }
 
-export const Paginator = ({totalUsersCount, pageSize, onPageChanged}: PaginatorPropsType) => {
-    const pagesCount = Math.ceil(totalUsersCount / pageSize)
-    // const pages = []
-    // for (let i = 1; i <= pagesCount; i++) {
-    //    pages.push(i);
-    // }
+export const Paginator = ({totalItemsCount, pageSize, onPageChanged, currentPage}: PaginatorPropsType) => {
+    const pagesCount = Math.ceil(totalItemsCount / pageSize)
+
     return <Pagination count={pagesCount} onChange={(e, p) => onPageChanged(p)}
-                        variant="outlined" shape="rounded" color="primary"/>
+                        variant="outlined" shape="rounded" color="primary" page={currentPage}/>
 
 }
