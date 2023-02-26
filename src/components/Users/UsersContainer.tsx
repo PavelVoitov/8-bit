@@ -1,10 +1,10 @@
-import {ReducerPropsType} from "../../redux/redux-store";
+import {ReducerPropsType} from "redux/redux-store";
 import {
 	follow, requestUsers,
 	setCurrentPage,
 	unfollow,
 	UserType
-} from "../../redux/users-reducer";
+} from "redux/users-reducer";
 import {connect} from "react-redux";
 import React from 'react';
 import {Users} from "./Users";
@@ -17,7 +17,7 @@ import {
 	getPageSize,
 	getTotalUsersCount,
 	getUsersSuperSelector
-} from "../../redux/users-selectors";
+} from "redux/users-selectors";
 
 
 type MapStateToPropsType = {
@@ -54,8 +54,7 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 
 	render() {
 		return <>
-			{this.props.isFetching ? <Preloader/>
-				: null}
+			{this.props.isFetching ? <Preloader/> : null}
 			<Users
 				currentPage={this.props.currentPage}
 				totalUsersCount={this.props.totalUsersCount}

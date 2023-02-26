@@ -1,0 +1,6 @@
+.loader {
+    position: absolute;
+    margin-left: 50%;
+    top: 20%;
+    z-index: 999
+}

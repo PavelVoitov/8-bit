@@ -1,15 +1,15 @@
 .appwrapper {
     display: grid;
-
     grid-template-areas:
   "head head"
   "nav content";
-    grid-template-rows: 80px 200vh;
+    grid-template-rows: 80px 120vh;
     grid-template-columns: 180px 10fr;
     font-family: 'Courier', monospace;
 }
 
 .appWrapperContent {
-   grid-area: content;
+    position: relative;
+    grid-area: content;
     background-color: #bd4c4c;
 }

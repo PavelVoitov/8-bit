@@ -1,7 +1,7 @@
 import React from "react";
 import userPhoto from "../../assets/images/photosNull.png";
 import c from "./Users.module.css";
-import {UserType} from "../../redux/users-reducer";
+import {UserType} from "redux/users-reducer";
 import {NavLink} from "react-router-dom";
 
 
@@ -15,7 +15,7 @@ type UserPropsType = {
 
 export const User = ({user, followingInProgress, follow, unfollow}: UserPropsType) => {
     return (
-        <div>
+        <div className={c.users}>
               <span>
                   <div>
                       <NavLink to={"/profile/" + user.id}>

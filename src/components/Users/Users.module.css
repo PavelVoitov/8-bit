@@ -1,3 +1,7 @@
+.users {
+    position: relative;
+}
+
 .img {
     margin-top: 20px;
     width: 50px;
@@ -11,5 +15,4 @@
 
 .page {
     cursor: pointer;
-
 }
