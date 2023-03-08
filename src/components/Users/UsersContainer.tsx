@@ -42,7 +42,6 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 
 	componentDidMount() {
 		const {currentPage, pageSize} = this.props
-		console.log(currentPage)
 		this.props.requestUsers(currentPage, pageSize)
 	}
 

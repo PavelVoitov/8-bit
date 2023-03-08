@@ -5,8 +5,27 @@ const state: ProfilePagePropsType = {
 		{id: 1, message: 'Hello!', likesCount: 2},
 		{id: 2, message: 'How are you?', likesCount: 17},
 	],
-	profile: null,
-	status: ''
+	profile: {
+		"userId": 0,
+		"lookingForAJob": false,
+		"lookingForAJobDescription": '',
+		"fullName": '',
+		"contacts": {
+			"github": '',
+			"vk": '',
+			"facebook": '',
+			"instagram":'',
+			"twitter": '',
+			"website": '',
+			"youtube": '',
+			"mainLink": '',
+		},
+		"photos": {
+			"small": '',
+			"large": ''
+		}
+	},
+	"status": ''
 }
 
 test('length of posts should be incremented', () => {
