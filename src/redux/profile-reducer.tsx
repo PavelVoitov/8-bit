@@ -1,21 +1,27 @@
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "api/api";
+import {DataFromFormDataType} from "components/Profile/MyPosts/ProfileInfo/ProfileDataForm/ProfileDataForm";
+import {AppThunk} from "redux/redux-store";
+import {stopSubmit} from "redux-form";
+
+export type ContactsType = {
+	"github": string
+	"vk": string
+	"facebook": string
+	"instagram": string
+	"twitter": string
+	"website": string
+	"youtube": string
+	"mainLink": string
+}
 
 export type ProfilePropsType = {
 	"userId": number
 	"lookingForAJob": boolean
 	"lookingForAJobDescription": string
 	"fullName": string
-	"contacts": {
-		"github": string
-		"vk": string
-		"facebook": string
-		"instagram": string
-		"twitter": string
-		"website": string
-		"youtube": string
-		"mainLink": string
-	}
+	"aboutMe": string
+	"contacts": ContactsType
 	"photos": {
 		"small": string
 		"large": string
@@ -32,6 +38,7 @@ export type ProfilePagePropsType = {
 	profile: ProfilePropsType
 	posts: Array<PostType>
 	status: string
+	isEditMode: boolean
 }
 
 const initialState: ProfilePagePropsType = {
@@ -43,12 +50,13 @@ const initialState: ProfilePagePropsType = {
 		"userId": 0,
 		"lookingForAJob": false,
 		"lookingForAJobDescription": '',
+		"aboutMe": '',
 		"fullName": '',
 		"contacts": {
 			"github": '',
 			"vk": '',
 			"facebook": '',
-			"instagram":'',
+			"instagram": '',
 			"twitter": '',
 			"website": '',
 			"youtube": '',
@@ -59,7 +67,8 @@ const initialState: ProfilePagePropsType = {
 			"large": ''
 		}
 	},
-	status: ''
+	status: '',
+	isEditMode: false
 }
 
 type SetUserProfileAT = ReturnType<typeof setUserProfile>
@@ -67,8 +76,15 @@ type AddPostAT = ReturnType<typeof addPostAC>
 type SetStatus = ReturnType<typeof setStatus>
 type DeletePost = ReturnType<typeof deletePost>
 type SavePhotoSuccess = ReturnType<typeof savePhotoSuccess>
+type SetEditModeSuccessAT = ReturnType<typeof setEditModeSuccess>
 
-export type ProfileActionsTypes = SetUserProfileAT | AddPostAT | SetStatus | DeletePost | SavePhotoSuccess
+export type ProfileActionsTypes =
+	| SetUserProfileAT
+	| AddPostAT
+	| SetStatus
+	| DeletePost
+	| SavePhotoSuccess
+	| SetEditModeSuccessAT
 
 export const profileReducer = (state: ProfilePagePropsType = initialState, action: ProfileActionsTypes): ProfilePagePropsType => {
 
@@ -99,10 +115,14 @@ export const profileReducer = (state: ProfilePagePropsType = initialState, actio
 				posts: state.posts.filter(p => p.id !== action.postId)
 			}
 		case "profile/SAVE-PHOTO":
-			console.log(action.photos)
 			return {
 				...state,
 				profile: {...state.profile, photos: action.photos},
+			}
+		case "profile/SET-EDIT-MODE":
+			return {
+				...state,
+				isEditMode: action.isEditMode
 			}
 		default:
 			return state;
@@ -134,6 +154,10 @@ export const savePhotoSuccess = (photos: { small: string; large: string; }) => (
 	type: "profile/SAVE-PHOTO",
 	photos
 } as const)
+export const setEditModeSuccess = (isEditMode: boolean) => ({
+	type: "profile/SET-EDIT-MODE",
+	isEditMode
+} as const)
 
 
 //thunks
@@ -155,5 +179,20 @@ export const savePhoto = (file: File) => async (dispatch: Dispatch) => {
 	const data = await profileAPI.savePhoto(file)
 	if (data.data.resultCode === 0) {
 		dispatch(savePhotoSuccess(data.data.data.photos))
+	}
+}
+export const saveProfile = (formData: DataFromFormDataType): AppThunk => async (dispatch, getState) => {
+	const userId = getState().auth.id
+	const data = await profileAPI.saveProfile(formData)
+	if (data.resultCode === 0 && userId) {
+		await dispatch(getUserProfile(userId))
+		dispatch(setEditModeSuccess(false))
+	} else {
+		const errorMessage = data.messages[0]
+		const contactsName = errorMessage.split('>')[1].split(')')[0];
+		const modified = contactsName.toLowerCase();
+		dispatch(stopSubmit('edit-profile', {"contacts": {[modified]: "Ошибка в URL: " + contactsName}}))
+		dispatch(setEditModeSuccess(true))
+
 	}
 }

@@ -5,7 +5,7 @@ import {
 	getStatus,
 	getUserProfile,
 	ProfilePropsType,
-	savePhoto,
+	savePhoto, saveProfile,
 	setUserProfile,
 	updateStatus
 } from "redux/profile-reducer";
@@ -13,6 +13,7 @@ import {
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {ReducerPropsType} from "redux/redux-store";
+import {DataFromFormDataType} from "components/Profile/MyPosts/ProfileInfo/ProfileDataForm/ProfileDataForm";
 
 
 type MapStateToPropsType = {
@@ -20,6 +21,7 @@ type MapStateToPropsType = {
 	status: string
 	authorizedUserId: string
 	isAuth: boolean
+	isEditMode: boolean
 }
 
 export type ProfileContainerPropsType = MapStateToPropsType & {
@@ -28,6 +30,7 @@ export type ProfileContainerPropsType = MapStateToPropsType & {
 	getStatus: (status: string) => void
 	updateStatus: (status: string) => void
 	savePhoto: (file: File) => void
+	saveProfile: (formData: DataFromFormDataType) => void
 }
 
 type PathParamsProps = {
@@ -69,6 +72,8 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
 									 status={this.props.status}
 									 updateStatus={this.props.updateStatus}
 									 savePhoto={this.props.savePhoto}
+									 saveProfile={this.props.saveProfile}
+									 isEditMode={this.props.isEditMode}
 					/>
 				</div>
 			</>
@@ -82,7 +87,8 @@ let mapStateToProps = (state: ReducerPropsType) => {
 		profile: state.profilePage.profile,
 		status: state.profilePage.status,
 		authorizedUserId: state.auth.id,
-		isAuth: state.auth.isAuth
+		isAuth: state.auth.isAuth,
+		isEditMode: state.profilePage.isEditMode
 	}
 }
 
@@ -92,7 +98,8 @@ export default compose<React.ComponentType>(connect(mapStateToProps,
 			getUserProfile,
 			getStatus,
 			updateStatus,
-			savePhoto
+			savePhoto,
+			saveProfile
 		}),
 	withRouter,
 )(ProfileContainer)

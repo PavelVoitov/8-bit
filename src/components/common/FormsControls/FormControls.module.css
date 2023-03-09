@@ -1,5 +1,11 @@
-.formControl {
+.formControl input, textarea {
+    width: 250px;
+    margin-bottom: 20px;
+}
 
+.formControl input[type='checkbox'] {
+    margin: 0;
+    width: 14px;
 }
 
 .formControl.error input,
@@ -15,6 +21,6 @@
 .formSummaryError {
     border: 1px red solid;
     padding: 5px;
-    color: red;
-
+    color: #0c0c0c;
+    background-color: #cea952;
 }

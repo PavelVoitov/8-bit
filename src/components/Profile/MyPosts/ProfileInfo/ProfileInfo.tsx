@@ -1,9 +1,15 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useLayoutEffect, useState} from "react";
 import c from './ProfileInfo.module.css';
-import {ProfilePropsType} from "redux/profile-reducer";
+import {ContactsType, ProfilePropsType, setEditModeSuccess} from "redux/profile-reducer";
 import {Preloader} from "../../../common/Preloader/Preloader";
-import {ProfileStatusWithHooks} from "./profileStatus/ProfileStatusWithHooks";
 import userPhoto from "../../../../assets/images/photosNull.png";
+import {Contact} from "components/Profile/MyPosts/ProfileInfo/Contact/Contact";
+import {ProfileData} from "components/Profile/MyPosts/ProfileInfo/ProfileData/ProfileData";
+import {
+	DataFromFormDataType,
+	ProfileDataReduxForm
+} from "components/Profile/MyPosts/ProfileInfo/ProfileDataForm/ProfileDataForm";
+import {useDispatch} from "react-redux";
 
 type ProfileInfoProps = {
 	profile: ProfilePropsType
@@ -11,10 +17,27 @@ type ProfileInfoProps = {
 	updateStatus: (status: string) => void
 	isOwner: boolean
 	savePhoto: (file: File) => void
+	saveProfile: (formData: DataFromFormDataType) => void
+	isEditMode: boolean
 }
 
 
-export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}: ProfileInfoProps) => {
+export const ProfileInfo = ({
+															profile,
+															status,
+															updateStatus,
+															isOwner,
+															savePhoto,
+															saveProfile,
+															isEditMode
+														}: ProfileInfoProps) => {
+	const [editMode, setEditMode] = useState<boolean>(false)
+	const dispatch = useDispatch()
+
+	useLayoutEffect( () => {
+		isEditMode ? setEditMode(true) : setEditMode(false)
+	}, [isEditMode])
+
 	if (profile === null) {
 		return <Preloader/>
 	}
@@ -25,21 +48,41 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}:
 		}
 	}
 
+	const contacts: ContactsType = profile.contacts
+	const contactsObj = Object.keys(contacts).map(key => {
+		return <Contact key={key} contactTitle={key} contactValue={contacts[key as keyof ContactsType]}/>
+	})
+
+	const onSubmit = async (formData: DataFromFormDataType) => {
+		 saveProfile(formData)
+	}
+
+	const goToEditMode = () => {
+		setEditMode(true)
+		dispatch(setEditModeSuccess(true))
+	}
 
 	return (
 		<div>
 			<div className={c.description}>
 				<img className={c.avatar} src={profile.photos?.large || userPhoto} alt={'your avatar'}/>
 				{isOwner ? <input type="file" onChange={onMainPhotoSelected}/> : ''}
-				<p>{profile.fullName}</p>
-				<ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
-				<h2>Contacts:</h2>
-				<ul>
-					<li>{profile.contacts.vk}</li>
-					<li>{profile.contacts.facebook}</li>
-					<li>{profile.contacts.twitter}</li>
-					<li>{profile.contacts.instagram}</li>
-				</ul>
+				<div>
+					{editMode
+						? <ProfileDataReduxForm
+							onSubmit={onSubmit}
+							initialValues={profile}
+							profile={profile}
+						/>
+						: <ProfileData
+							contactsObj={contactsObj}
+							profile={profile}
+							updateStatus={updateStatus}
+							status={status}
+							isOwner={true}
+							goToEditMode={goToEditMode}
+						/>}
+				</div>
 			</div>
 		</div>
 	)

@@ -2,10 +2,10 @@ import React from 'react'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {Input} from "../common/FormsControls/FormsControls";
-import {required} from "../../utils/validators/validators";
-import {login} from "../../redux/auth-reducer";
+import {required} from "utils/validators/validators";
+import {login} from "redux/auth-reducer";
 import {Redirect} from "react-router-dom";
-import {ReducerPropsType} from "../../redux/redux-store";
+import {ReducerPropsType} from "redux/redux-store";
 import s from '../common/FormsControls/FormControls.module.css'
 
 
@@ -42,7 +42,6 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginDataFormPr
                 <Field type="checkbox"
                        component={Input}
                        name={'rememberMe'}
-                       validate={[required]}
                 /> remember me
             </div>
             {error &&

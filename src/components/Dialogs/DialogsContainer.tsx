@@ -1,11 +1,11 @@
 import React from "react";
-import {ReducerPropsType} from "../../redux/redux-store";
+import {ReducerPropsType} from "redux/redux-store";
 import {Dialogs} from "./Dialogs";
-import {MessagesType, sendMessageAC} from "../../redux/messages-reducer";
+import {MessagesType, sendMessageAC} from "redux/messages-reducer";
 import {connect} from "react-redux";
 import {compose, Dispatch} from 'redux'
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {withAuthRedirect} from "hoc/withAuthRedirect";
 
 
 type MapStateToPropsType = {

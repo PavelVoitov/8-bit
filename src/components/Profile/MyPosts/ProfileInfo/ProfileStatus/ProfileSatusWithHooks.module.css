@@ -1,0 +1,18 @@
+.statusBlock {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+    height: 20px;
+}
+
+.statusBlock img {
+    width: 20px;
+    cursor: pointer;
+}
+
+.status {
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 0;
+}

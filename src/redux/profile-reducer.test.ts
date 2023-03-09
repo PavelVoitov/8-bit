@@ -9,6 +9,7 @@ const state: ProfilePagePropsType = {
 		"userId": 0,
 		"lookingForAJob": false,
 		"lookingForAJobDescription": '',
+		"aboutMe": '',
 		"fullName": '',
 		"contacts": {
 			"github": '',
@@ -25,7 +26,8 @@ const state: ProfilePagePropsType = {
 			"large": ''
 		}
 	},
-	"status": ''
+	status: '',
+	isEditMode: false
 }
 
 test('length of posts should be incremented', () => {
