@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Navbar} from "components/Navbar/Navbar";
-import {HashRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {News} from "components/News/News";
 import {Music} from "components/Music/Music";
 import {Settings} from "components/Settings/Settings";
@@ -13,6 +13,7 @@ import {initializeApp} from "redux/app-reducer";
 import {ReducerPropsType, store} from "redux/redux-store";
 import {Preloader} from "components/common/Preloader/Preloader";
 import {withSuspense} from "hoc/withSuspense";
+import pageNotFound from 'assets/images/pageNotFound.jpg'
 
 const ProfileContainer = React.lazy(() => import('../components/Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('../components/Dialogs/DialogsContainer'));
@@ -28,9 +29,17 @@ type mapStateToPropsType = {
 }
 
 class App extends React.Component<AppPropsType, {}> {
+	catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
+		alert(promiseRejectionEvent)
+	}
 
 	componentDidMount() {
 		this.props.initializeApp()
+		window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
 	}
 
 	render() {
@@ -43,13 +52,17 @@ class App extends React.Component<AppPropsType, {}> {
 				<HeaderContainer/>
 				<Navbar/>
 				<div className='appWrapperContent'>
-					<Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
-					<Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
-					<Route path={'/news'} render={() => <News/>}/>
-					<Route path={'/music'} render={() => <Music/>}/>
-					<Route path={'/settings'} render={() => <Settings/>}/>
-					<Route path={'/users'} render={() => <UsersContainer/>}/>
-					<Route path={'/login'} render={withSuspense(Login)}/>
+					<Switch>
+						<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>
+						<Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
+						<Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
+						<Route path={'/news'} render={() => <News/>}/>
+						<Route path={'/music'} render={() => <Music/>}/>
+						<Route path={'/settings'} render={() => <Settings/>}/>
+						<Route path={'/users'} render={() => <UsersContainer/>}/>
+						<Route path={'/login'} render={withSuspense(Login)}/>
+						<Route exact={true} path={'*'} render={() => <div><img src={pageNotFound} alt=""/></div>}/>
+					</Switch>
 				</div>
 			</div>
 
@@ -69,10 +82,10 @@ const AppContainer = compose<React.ComponentType>(
 
 export const MainApp = () => {
 	return (
-		<HashRouter>
+		<BrowserRouter>
 			<Provider store={store}>
 				<AppContainer/>
 			</Provider>
-		</HashRouter>
+		</BrowserRouter>
 	)
 }

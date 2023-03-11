@@ -54,7 +54,7 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
 	}
 
 	componentDidMount() {
-		this.refreshProfile()
+			this.refreshProfile()
 	}
 
 	componentDidUpdate(prevProps: Readonly<CommonPropsType>, prevState: Readonly<{}>, snapshot?: any) {
