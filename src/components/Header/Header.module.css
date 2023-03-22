@@ -1,38 +1,50 @@
 .header {
     grid-area: head;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     background-color: #064a90;
 }
 
 .header img {
-    width: 80px;
+    width: 70px;
 }
 
 .title {
     color: black;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
 }
 
 .headerBlockImg {
+    margin: 10px;
     display: inline-block;
 }
 
 .headerBlockSpan {
-    position: absolute;
     display: inline-block;
-    margin-left: 50%;
     margin-top: 5px;
     padding: 20px;
 }
 
 .loginBlock {
     float: right;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
 }
 
 .loginBlock a {
     text-decoration: none;
     color: #bd4c4c;
     margin: 10px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
+}
+
+.loginBlock button {
+    background-color: #bc4c4c;
+    margin-left: 20px;
+    margin-right: 10px;
 }

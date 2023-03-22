@@ -5,10 +5,11 @@
     justify-content: center;
     background-color: #cbac64;
     border: 2px solid black;
-    width: 50%;
-    margin: 20px;
-    padding: 10px 20px 30px 20px;
-
+    width: 30%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
 }
 
 .checkboxField {
@@ -21,6 +22,7 @@
 .button {
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .rememberMe {
@@ -30,6 +32,7 @@
 
 .error {
     height: 20px;
-    margin: 10px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
