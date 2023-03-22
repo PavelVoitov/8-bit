@@ -7,6 +7,7 @@ import {login} from "redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {ReducerPropsType} from "redux/redux-store";
 import s from '../common/FormsControls/FormControls.module.css'
+import style from './Login.module.css'
 
 
 export type FormDataType = {
@@ -40,11 +41,12 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginDataFormPr
 							 validate={[required]}
 				/>
 			</div>
-			<div>
+			<div className={style.checkboxField}>
 				<Field type="checkbox"
 							 component={Input}
 							 name={'rememberMe'}
-				/> remember me
+				/>
+				<div className={style.rememberMe}>remember me</div>
 			</div>
 			{captchaUrl && <img src={captchaUrl} alt="captcha"/>}
 			{captchaUrl && <Field placeholder={'Symbols from image'}
@@ -52,12 +54,14 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginDataFormPr
                             name={'captcha'}
                             validate={[required]}
       />}
-			{error &&
-					<div className={s.formSummaryError}>
-						{error}
-          </div>}
-			<div>
+			<div className={style.button}>
 				<button>Login</button>
+			</div>
+			<div className={style.error}>
+				{error &&
+            <div className={s.formSummaryError}>
+							{error}
+            </div>}
 			</div>
 		</form>
 	)
@@ -80,7 +84,7 @@ const Login = (props: LoginPropsType & MapStateToProps) => {
 		return <Redirect to={'/profile'}/>
 	}
 	return (
-		<div>
+		<div className={style.loginForm}>
 			<h1>LOGIN</h1>
 			<LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
 		</div>

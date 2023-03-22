@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
+import  s from 'app/App.module.css';
 import {Navbar} from "components/Navbar/Navbar";
-import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
+import {HashRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {News} from "components/News/News";
 import {Music} from "components/Music/Music";
 import {Settings} from "components/Settings/Settings";
@@ -30,7 +30,7 @@ type mapStateToPropsType = {
 
 class App extends React.Component<AppPropsType, {}> {
 	catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
-		alert(promiseRejectionEvent)
+		console.log(promiseRejectionEvent)
 	}
 
 	componentDidMount() {
@@ -42,16 +42,17 @@ class App extends React.Component<AppPropsType, {}> {
 		window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
 	}
 
+
 	render() {
 
 		if (!this.props.initialized) {
 			return <Preloader/>
 		}
 		return (
-			<div className="appwrapper">
+			<div className={s.appWrapper}>
 				<HeaderContainer/>
 				<Navbar/>
-				<div className='appWrapperContent'>
+				<div className={s.appWrapperContent}>
 					<Switch>
 						<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>
 						<Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
@@ -82,10 +83,10 @@ const AppContainer = compose<React.ComponentType>(
 
 export const MainApp = () => {
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<Provider store={store}>
 				<AppContainer/>
 			</Provider>
-		</BrowserRouter>
+		</HashRouter>
 	)
 }

@@ -10,15 +10,19 @@ type TextareaPropsType = {
     children: JSX.Element
 }
 
+
 const FormControl = ({meta: {touched, error}, children}: TextareaPropsType) => {
     const hasError = touched && error
 
     return (
         <div className={s.formControl + ' ' + (hasError ? s.error : '')}>
+            <div className={s.errorSpan}>
+                {hasError && <span>{error}</span>}
+            </div>
             <div>
                 {children}
             </div>
-            {hasError && <span>{error}</span>}
+
         </div>
     )
 }

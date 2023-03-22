@@ -1,0 +1,35 @@
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #cbac64;
+    border: 2px solid black;
+    width: 50%;
+    margin: 20px;
+    padding: 10px 20px 30px 20px;
+
+}
+
+.checkboxField {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.rememberMe {
+    margin-bottom: 3px;
+    font-weight: bolder
+}
+
+.error {
+    height: 20px;
+    margin: 10px;
+}
+

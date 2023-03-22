@@ -1,10 +1,14 @@
 .formControl input, textarea {
     width: 250px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 1px solid #050505;
 }
 
 .formControl input[type='checkbox'] {
-    margin: 0;
+    margin-left: 0;
+    margin-bottom: 25px;
+    height: 14px;
     width: 14px;
 }
 
@@ -15,12 +19,19 @@
 }
 
 .formControl.error span {
-    color: #ff003b;
+    color: #944a5c;
+    font-weight: bolder;
+    font-size: 14px;
 }
 
 .formSummaryError {
     border: 1px red solid;
     padding: 5px;
     color: #0c0c0c;
-    background-color: #cea952;
+    margin-bottom: 10px;
+}
+
+.errorSpan {
+    height: 15px;
+    margin-bottom: 5px;
 }
