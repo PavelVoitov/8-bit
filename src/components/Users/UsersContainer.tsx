@@ -7,7 +7,7 @@ import {
 } from "redux/users-reducer";
 import {connect} from "react-redux";
 import React from 'react';
-import {Users} from "./Users";
+import {Users} from "components/Users/users/Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";

@@ -29,7 +29,8 @@
 }
 
 .loginBlock {
-    float: right;
+    display: flex;
+    flex-direction: row;
     font-size: 20px;
     font-weight: bold;
     padding: 10px;
@@ -47,4 +48,24 @@
     background-color: #bc4c4c;
     margin-left: 20px;
     margin-right: 10px;
+}
+
+@media only screen and (max-width: 480px) and (min-width: 0px)  {
+    .header {
+        justify-content: space-around;
+    }
+    .headerBlockImg {
+        margin-left: -10px;
+    }
+    .loginBlock button {
+        margin-left: 2px;
+        margin-right: 1px;
+    }
+    .loginBlock {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        font-size: 15px;
+        padding: 3px;
+    }
 }

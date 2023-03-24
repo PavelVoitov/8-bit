@@ -26,6 +26,12 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginDataFormPr
 	& LoginDataFormPropsType> = ({handleSubmit, error, captchaUrl}) => {
 	return (
 		<form onSubmit={handleSubmit}>
+			<p style={{opacity: 0.5}}>
+				To log in get registered here<br/><br/>
+				or use common test account credentials:<br/><br/>
+				<b>Email:</b> free@samuraijs.com<br/><br/>
+				<b>Password:</b> free
+			</p>
 			<div>
 				<Field placeholder={'Email'}
 							 component={Input}

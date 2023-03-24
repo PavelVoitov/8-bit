@@ -7,7 +7,6 @@
     grid-template-columns: 180px 10fr;
     font-family: 'Courier', monospace;
     height: 100vh;
-
 }
 
 .appWrapperContent {
@@ -15,4 +14,14 @@
     grid-area: content;
     background-color: #bd4c4c;
     padding-bottom: 40px;
+
+}
+
+@media only screen and (max-width: 480px) and (min-width: 0px)  {
+    .appWrapper {
+        display: block;
+    }
+    .appWrapperContent {
+        padding: 20px;
+    }
 }

@@ -16,3 +16,12 @@
     color: #cbac64;
 }
 
+.itemNone {
+    /*display: none;*/
+    height: 0;
+    opacity: 0;
+    transition: 1s line-height;
+}
+
+
+
