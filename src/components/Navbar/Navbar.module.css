@@ -4,24 +4,17 @@
     padding: 10px;
 }
 
-.item a {
-    display: inline-block;
-    color: #82c5ec;
-    text-decoration: none;
-    margin-bottom: 10px;
-    margin-left: 10px
-}
+/*.itemNone {*/
+/*    !*display: none;*!*/
+/*    height: 0;*/
+/*    opacity: 0;*/
+/*    transition: 1s line-height;*/
+/*}*/
 
-.item a.activeLink {
-    color: #cbac64;
+@media only screen and (max-width: 480px) and (min-width: 0px)  {
+    .nav {
+        display: none;
+    }
 }
-
-.itemNone {
-    /*display: none;*/
-    height: 0;
-    opacity: 0;
-    transition: 1s line-height;
-}
-
 
 
