@@ -1,18 +1,55 @@
+.burgerNavBlock {
+    display: none;
+    background-color: rgba(31, 103, 44, 0.9);
+    position: absolute;
+    top: 90px;
+    left: 500px;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    transform: rotate(0deg) translate(0px, 0px);
+    transition: 1s;
+}
+
+.burgerNavBlockOpen {
+    left: 0;
+}
+
+.burgerNavClose {
+    background-color: rgba(31, 103, 44, 0);
+}
+
+.navLinksBlock {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
 .burgerNavImg {
     display: none;
     justify-content: end;
-    height: 35px;
-    margin-bottom: 10px;
     transition: 1s linear;
 }
 
+
 .burgerNavImg img {
     display: inline-block;
+    padding-top: 10px;
+    padding-right: 10px;
 }
 
 @media only screen and (max-width: 480px) and (min-width: 0px)  {
     .burgerNavImg {
-        display: flex;
-        transition: 1s linear;
+        display: block;
+        position: absolute;
+        right: 5px;
+        z-index: 2;
+    }
+    .burgerNavBlock {
+        display: block;
+    }
+    .burgerNavImgClose {
+        z-index: -1;
+        opacity: 0;
     }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import  s from 'app/App.module.css';
 import {Navbar} from "components/Navbar/Navbar";
 import {HashRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
-import {News} from "components/News/News";
+import {Videos} from "components/Videos/Videos";
 import {Music} from "components/Music/Music";
 import {Settings} from "components/Settings/Settings";
 import UsersContainer from "../components/Users/UsersContainer";
@@ -59,7 +59,7 @@ class App extends React.Component<AppPropsType, {}> {
 						<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>
 						<Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
 						<Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
-						<Route path={'/news'} render={() => <News/>}/>
+						<Route path={'/videos'} render={() => <Videos/>}/>
 						<Route path={'/music'} render={() => <Music/>}/>
 						<Route path={'/settings'} render={() => <Settings/>}/>
 						<Route path={'/users'} render={() => <UsersContainer/>}/>
