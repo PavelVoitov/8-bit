@@ -2,7 +2,7 @@ import React from 'react';
 import  s from 'app/App.module.css';
 import {Navbar} from "components/Navbar/Navbar";
 import {HashRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
-import {Videos} from "components/Videos/Videos";
+import {Video} from "components/Video/Video";
 import {Music} from "components/Music/Music";
 import {Settings} from "components/Settings/Settings";
 import UsersContainer from "../components/Users/UsersContainer";
@@ -15,6 +15,7 @@ import {Preloader} from "components/common/Preloader/Preloader";
 import {withSuspense} from "hoc/withSuspense";
 import pageNotFound from 'assets/images/pageNotFound.jpg'
 import {BurgerNav} from "components/Navbar/burgerNav/BurgerNav";
+import {PageNotFound} from "components/PageNotFound/PageNotFound";
 
 const ProfileContainer = React.lazy(() => import('../components/Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('../components/Dialogs/DialogsContainer'));
@@ -59,12 +60,12 @@ class App extends React.Component<AppPropsType, {}> {
 						<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>
 						<Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
 						<Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
-						<Route path={'/videos'} render={() => <Videos/>}/>
+						<Route path={'/videos'} render={() => <Video/>}/>
 						<Route path={'/music'} render={() => <Music/>}/>
 						<Route path={'/settings'} render={() => <Settings/>}/>
 						<Route path={'/users'} render={() => <UsersContainer/>}/>
 						<Route path={'/login'} render={withSuspense(Login)}/>
-						<Route exact={true} path={'*'} render={() => <div><img src={pageNotFound} alt=""/></div>}/>
+						<Route exact={true} path={'*'} render={() => <PageNotFound/>}/>
 					</Switch>
 				</div>
 			</div>

@@ -1,9 +1,29 @@
 .users {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+}
+
+.nameBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
 }
 
 .img {
-    margin-top: 20px;
+    display: block;
     width: 50px;
     height: 50px;
 }
@@ -15,4 +35,20 @@
 
 .page {
     cursor: pointer;
+}
+
+.userName {
+    text-align: center;
+    width: 80px;
+    padding: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 480px) and (min-width: 0px)  {
+    .userName {
+        width: 60px;
+    }
 }

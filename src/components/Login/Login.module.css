@@ -36,3 +36,10 @@
     width: 100%;
 }
 
+@media only screen and (max-width: 480px) and (min-width: 0px)  {
+    .loginForm {
+        margin-top: 50px;
+        width: 95%;
+    }
+}
+

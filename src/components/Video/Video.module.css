@@ -1,16 +1,25 @@
-.videosBlock {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 300px;
-    grid-row-gap: 10%;
-    padding: 20px;
-    justify-content: center;
+.videoPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
 }
 
+.videosBlock {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 350px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #cbac64;
+    border: 2px solid black;
+}
+
 .video {
-    width: 450px;
+    border: 2px solid black;
+    margin: 10px;
     height: 300px;
     text-align: center;
 }
@@ -19,11 +28,6 @@
     .videosBlock {
         display: grid;
         grid-template-columns: 1fr;
-        grid-auto-rows: 300px;
-        grid-row-gap: 10%;
         justify-content: center;
-        height: 100vh;
-        margin: 10px;
-        padding: 20px;
     }
 }

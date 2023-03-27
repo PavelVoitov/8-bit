@@ -3,10 +3,10 @@
     grid-template-areas:
   "head head"
   "nav content";
-    grid-template-rows: 80px;
+    grid-template-rows: 80px 100vh;
     grid-template-columns: 180px 10fr;
     font-family: 'Courier', monospace;
-    height: 100vh;
+    /*height: 100%;*/
 }
 
 .appWrapperContent {
