@@ -1,6 +1,6 @@
-import {usersAPI} from "../api/api";
+import {usersAPI} from "api/api";
 import {Dispatch} from "redux";
-import {updateObjectInArray} from "../utils/object-helpers";
+import {updateObjectInArray} from "utils/object-helpers";
 
 export type UserType = {
     "name": string,

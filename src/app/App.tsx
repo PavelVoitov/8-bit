@@ -13,7 +13,6 @@ import {initializeApp} from "redux/app-reducer";
 import {ReducerPropsType, store} from "redux/redux-store";
 import {Preloader} from "components/common/Preloader/Preloader";
 import {withSuspense} from "hoc/withSuspense";
-import pageNotFound from 'assets/images/pageNotFound.jpg'
 import {BurgerNav} from "components/Navbar/burgerNav/BurgerNav";
 import {PageNotFound} from "components/PageNotFound/PageNotFound";
 
