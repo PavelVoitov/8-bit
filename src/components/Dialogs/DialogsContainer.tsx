@@ -1,6 +1,6 @@
 import React from "react";
 import {ReducerPropsType} from "redux/redux-store";
-import {Dialogs} from "./Dialogs";
+import {Dialogs} from "components/Dialogs/Dialogs/Dialogs";
 import {MessagesType, sendMessageAC} from "redux/messages-reducer";
 import {connect} from "react-redux";
 import {compose, Dispatch} from 'redux'
@@ -25,11 +25,10 @@ class DialogsContainer extends React.Component<CommonPropsType, {}> {
 
     render() {
 
-        return (<>
+        return (
                 <div>
                     <Dialogs {...this.props}/>
                 </div>
-            </>
         )
     }
 }

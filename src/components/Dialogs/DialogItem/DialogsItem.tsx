@@ -1,6 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import s from './../Dialogs.module.css';
+import s from 'components/Dialogs/Dialogs/Dialogs.module.css';
 
 
 type DialogsPropsType = {
@@ -13,7 +13,7 @@ export const DialogItem = (props: DialogsPropsType) => {
     let path = '/dialogs/' + id
     return (
         <div className={s.dialog + ' ' + s.active}>
-            <NavLink to={path}>{name}</NavLink>
+            <NavLink to={path} className={name === 'Andrew' ? s.active : ''}>{name}</NavLink>
         </div>
     )
 }

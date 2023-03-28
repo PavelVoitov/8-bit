@@ -38,13 +38,11 @@ const initialState : MessagesType = {
         {id: 5, message: 'It\'s rainy today.', sender: 'I'},
         {id: 6, message: 'What are you doing?', sender: 'user'},
     ],
-    // newMessage: ''
 }
 
 export type MessagesType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    // newMessage: string
 }
 
 type SendMessageAT = ReturnType<typeof sendMessageAC>

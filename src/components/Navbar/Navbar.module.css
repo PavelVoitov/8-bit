@@ -1,15 +1,9 @@
 .nav {
     grid-area: nav;
     background-color: #153b15;
-    padding: 10px;
+    padding: 10px 0 10px 0;
 }
 
-/*.itemNone {*/
-/*    !*display: none;*!*/
-/*    height: 0;*/
-/*    opacity: 0;*/
-/*    transition: 1s line-height;*/
-/*}*/
 
 @media only screen and (max-width: 480px) and (min-width: 0px)  {
     .nav {

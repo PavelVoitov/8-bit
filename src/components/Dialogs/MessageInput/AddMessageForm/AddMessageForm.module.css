@@ -1,0 +1,22 @@
+.form {
+    width: 30%;
+    margin-left: 20px;
+}
+
+.form textarea {
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 480px) and (min-width: 0px) {
+    .form {
+        width: 85%;
+        margin-left: 5px;
+        margin-bottom: 10px;
+    }
+    .form textarea {
+        height: 35px;
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+}

@@ -1,6 +1,6 @@
 import React from "react";
-import {MessagesType} from "../../../redux/messages-reducer";
-import {AddMessageReduxForm, FormMessageDataType} from "./AddMessageForm";
+import {MessagesType} from "redux/messages-reducer";
+import {AddMessageReduxForm, FormMessageDataType} from "components/Dialogs/MessageInput/AddMessageForm/AddMessageForm";
 
 type MessageInputPropsType = {
     state: MessagesType

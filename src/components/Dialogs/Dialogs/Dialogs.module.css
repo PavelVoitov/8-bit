@@ -1,0 +1,89 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+}
+
+.dialogsItems {
+    background-color: #cbac64;
+    height: 100vh;
+    /*border: 2px solid #064a8f;*/
+}
+
+.dialogsItems .dialog {
+    padding: 0 10px 0 0;
+}
+
+.active {
+    text-decoration: none;
+    color: #f3efe9;
+}
+
+.dialogsItems img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 10px 20px 20px 20px;
+}
+
+.users {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.message {
+    overflow-y: scroll;
+    margin: 0 20px 10px 20px;
+    /*border: 2px solid #064a8f;*/
+    background-color: #9d9999;
+    height: 70vh;
+    width: 45%;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 1260px) and (min-width: 480px) {
+    .message {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 480px) and (min-width: 0px) {
+    .dialogs {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-left: 30px;
+        height: 800px;
+        margin-top: 40px;
+    }
+
+    .dialogsItems {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dialogsItems .dialog {
+        padding: 10px;
+    }
+
+    .dialogsItems img {
+        margin: 10px 0 0 0;
+    }
+
+    .message {
+        margin-left: 5px;
+        width: 80%;
+    }
+
+    .users {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+
+
+

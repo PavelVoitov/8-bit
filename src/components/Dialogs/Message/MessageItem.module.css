@@ -1,29 +1,25 @@
-.message {
-    color: #16f116;
-}
+
 
 .messageUser {
     margin: 20px 20px 20px 400px;
-    display: block;
-    background-color: rgb(21, 59, 21, 0.8);
+    background-color: rgba(21, 59, 21, 0.8);
     min-height: 80px;
     max-height: 100%;
     display: grid;
     grid-template-columns: 200px 50px;
     width: 260px;
-    border-radius: 5px 5px 0px 5px;
+    border-radius: 5px 5px 0 5px;
 }
 
 .messageImg {
-    display: block;
     margin: 20px;
-    background-color: rgb(21, 59, 21, 0.8);
+    background-color: rgba(21, 59, 21, 0.8);
     min-height: 80px;
     max-height: 100%;
     display: grid;
     grid-template-columns: 200px 50px;
     width: 260px;
-    border-radius: 5px 5px 5px 0px;
+    border-radius: 5px 5px 5px 0;
 }
 
 .corner {
@@ -44,17 +40,12 @@
     bottom: -65px;
 }
 
-
 .time {
     position: relative;
-    top: 55px;
+    top: 70%;
     left: 5px;
     color: #bc4c4c;
-    /*position: absolute;*/
-    /*left: 5px;*/
-    /*bottom: 5px;*/
     font-weight: bold;
-
 }
 
 .textMessage {
@@ -64,5 +55,26 @@
     max-width: 200px;
     word-wrap: break-word;
     color: #82c5ec;
+}
 
+@media only screen and (max-width: 480px) and (min-width: 0px) {
+    .messageImg {
+        width: 220px;
+        display: flex;
+    }
+    .time {
+        top: 5px;
+    }
+    .textMessage {
+        max-width: 150px;
+    }
+    .messageUser {
+        width: 90%;
+        display: flex;
+        margin: 20px 20px 20px 20px;
+    }
+    .cornerUser {
+        left: 220px;
+        bottom: -65px;
+    }
 }
