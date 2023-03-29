@@ -18,7 +18,7 @@ export const Dialogs = (props: DialogsPropsType) => {
 						<DialogItem name={el.name} id={el.id}/>
 					</div>)}
 			</div>
-			<div>
+			<div className={s.messagesAndInput}>
 				<div className={s.message}>
 					{state.messages.map(el =>
 						<MessageItem

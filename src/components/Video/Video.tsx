@@ -13,7 +13,7 @@ export const Video = () => {
 			<div>
 				<h1>Video</h1>
 			</div>
-			<div className={s.videosBlock}>
+			<div className={s.videoBlock}>
 				<YouTube videoId={'sVGuwEeQKtE'} className={s.video} opts={opts}/>
 				<YouTube videoId={'g4gBXXWwi7w'} className={s.video} opts={opts}/>
 				<YouTube videoId={'tB4vsl1GmTE'} className={s.video} opts={opts}/>

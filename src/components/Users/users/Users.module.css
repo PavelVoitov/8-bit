@@ -6,7 +6,6 @@
     align-items: center;
     background-color: #cbac64;
     border: 1px solid black;
-    margin: 20px;
 }
 
 .paginator {
@@ -18,10 +17,6 @@
 @media only screen and (max-width: 480px) and (min-width: 0px)  {
     .users {
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(8, 180px);
-        margin: 3px;
-    }
-    .paginator {
-        margin-top: 50px;
+        grid-template-rows: repeat(8, 130px);
     }
 }

@@ -18,6 +18,7 @@ import {
 	getTotalUsersCount,
 	getUsersSuperSelector
 } from "redux/users-selectors";
+import s from './UsersContainer.module.css'
 
 
 type MapStateToPropsType = {
@@ -52,7 +53,7 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 	}
 
 	render() {
-		return <>
+		return <div className={s.usersContainer}>
 			{this.props.isFetching ? <Preloader/> : null}
 			<Users
 				currentPage={this.props.currentPage}
@@ -64,7 +65,7 @@ class UsersContainer extends React.Component<UsersPropsType, {}> {
 				unfollow={this.props.unfollow}
 				followingInProgress={this.props.followingInProgress}
 			/>
-		</>
+		</div>
 	}
 }
 

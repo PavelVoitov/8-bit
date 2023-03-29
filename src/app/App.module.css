@@ -17,11 +17,18 @@
 
 }
 
-@media only screen and (max-width: 480px) and (min-width: 0px)  {
+@media only screen and (max-width: 480px) and (min-width: 0px) {
     .appWrapper {
-        display: block;
+        display: grid;
+        grid-template-areas:
+            "head head"
+            "content content";
+        grid-template-columns: 1fr 1fr;
+        overflow-x: hidden;
+        position: relative;
     }
-    .appWrapperContent {
-        padding: 20px;
-    }
+
+/*    .appWrapperContent {*/
+/*        padding: 20px;*/
+/*    }*/
 }

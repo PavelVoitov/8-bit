@@ -21,25 +21,26 @@ export const BurgerNav = () => {
 	}
 
 	return (
-		<div>
-			<div className={!open ? s.burgerNavImg : `${s.burgerNavImg} ${s.burgerNavImgClose}`} onClick={handleOpenClose}>
-				<img
-					src={burgerMenuIsClose}
-					alt="menu"
-				/>
+		<>
+			<div className={!open ? s.burgerNavBlock : `${s.burgerNavBlock} ${s.burgerNavBlockOpen}`}>
+				<div className={!open ? s.burgerNavImgClose : `${s.burgerNavImgCloseNone}`} onClick={handleOpenClose}>
+					<img
+						src={burgerMenuIsClose}
+						alt="menu"
+					/>
+				</div>
+				<div className={s.burgerNavImg} onClick={handleOpenClose}>
+					<img
+						src={burgerMenuIsOpen}
+						alt="menu"
+					/>
+				</div>
+				<div className={s.navLinksBlock}>
+					<NavLinks/>
+				</div>
 			</div>
-					<div className={!open ? s.burgerNavBlock : `${s.burgerNavBlock} ${s.burgerNavBlockOpen}`}>
-              <div className={s.burgerNavImg} onClick={handleOpenClose}>
-                  <img
-                      src={burgerMenuIsOpen}
-                      alt="menu"
-                  />
-              </div>
-              <div className={s.navLinksBlock}>
-                  <NavLinks/>
-              </div>
-					</div>
-		</div>
+		</>
+
 
 
 	)

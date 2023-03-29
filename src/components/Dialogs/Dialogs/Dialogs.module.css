@@ -4,9 +4,10 @@
 }
 
 .dialogsItems {
+    display: flex;
+    flex-direction: column;
     background-color: #cbac64;
     height: 100vh;
-    /*border: 2px solid #064a8f;*/
 }
 
 .dialogsItems .dialog {
@@ -14,29 +15,34 @@
 }
 
 .active {
-    text-decoration: none;
+    /*text-decoration: none;*/
     color: #f3efe9;
 }
 
 .dialogsItems img {
-    display: block;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     margin: 10px 20px 20px 20px;
 }
 
 .users {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+   display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.messagesAndInput {
+    margin: 0 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .message {
     overflow-y: scroll;
-    margin: 0 20px 10px 20px;
-    /*border: 2px solid #064a8f;*/
     background-color: #9d9999;
-    height: 70vh;
-    width: 45%;
+    height: 80vh;
     padding: 10px;
 }
 
@@ -47,38 +53,29 @@
 }
 
 @media only screen and (max-width: 480px) and (min-width: 0px) {
-    .dialogs {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding-left: 30px;
-        height: 800px;
-        margin-top: 40px;
-    }
-
     .dialogsItems {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .dialogsItems .dialog {
         padding: 10px;
     }
 
     .dialogsItems img {
-        margin: 10px 0 0 0;
+        margin: 10px 10px 2px 10px;
     }
 
     .message {
-        margin-left: 5px;
-        width: 80%;
+      height: 85vh;
     }
 
     .users {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .messagesAndInput {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
     }
 }
 

@@ -1,0 +1,11 @@
+.usersContainer {
+    margin: 20px;
+}
+
+@media only screen and (max-width: 480px) and (min-width: 0px)  {
+.usersContainer {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+}

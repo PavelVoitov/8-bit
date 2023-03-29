@@ -13,7 +13,6 @@ import {initializeApp} from "redux/app-reducer";
 import {ReducerPropsType, store} from "redux/redux-store";
 import {Preloader} from "components/common/Preloader/Preloader";
 import {withSuspense} from "hoc/withSuspense";
-import {BurgerNav} from "components/Navbar/burgerNav/BurgerNav";
 import {PageNotFound} from "components/PageNotFound/PageNotFound";
 
 const ProfileContainer = React.lazy(() => import('../components/Profile/ProfileContainer'));
@@ -53,7 +52,7 @@ class App extends React.Component<AppPropsType, {}> {
 			<div className={s.appWrapper}>
 				<HeaderContainer/>
 				<Navbar/>
-				<BurgerNav/>
+				{/*<BurgerNav/>*/}
 				<div className={s.appWrapperContent}>
 					<Switch>
 						<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>

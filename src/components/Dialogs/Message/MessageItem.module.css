@@ -1,57 +1,61 @@
+.messageBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
 
+.messageBlockUser {
+    flex-direction: row-reverse;
+}
 
 .messageUser {
-    margin: 20px 20px 20px 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
     background-color: rgba(21, 59, 21, 0.8);
     min-height: 80px;
     max-height: 100%;
-    display: grid;
-    grid-template-columns: 200px 50px;
+    padding: 10px;
     width: 260px;
     border-radius: 5px 5px 0 5px;
 }
 
 .messageImg {
-    margin: 20px;
     background-color: rgba(21, 59, 21, 0.8);
     min-height: 80px;
     max-height: 100%;
-    display: grid;
-    grid-template-columns: 200px 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px;
     width: 260px;
     border-radius: 5px 5px 5px 0;
 }
 
 .corner {
+    display: inline-block;
     height: 15px;
     width: 15px;
     background: radial-gradient(circle at 0 0, rgba(0, 0, 0, 0) 15px, rgba(21, 59, 21, 0.8) 0);
-    position: relative;
-    left: -15px;
-    bottom: -65px;
 }
 
 .cornerUser {
+    display: inline-block;
     height: 15px;
     width: 15px;
     background: radial-gradient(circle at 15px 0px, rgba(0, 0, 0, 0) 15px, rgba(21, 59, 21, 0.8) 0);
-    position: relative;
-    left: 260px;
-    bottom: -65px;
 }
 
 .time {
-    position: relative;
-    top: 70%;
-    left: 5px;
     color: #bc4c4c;
     font-weight: bold;
 }
 
 .textMessage {
-    position: relative;
-    bottom: 10px;
-    margin: 5px;
     max-width: 200px;
     word-wrap: break-word;
     color: #82c5ec;
@@ -59,22 +63,13 @@
 
 @media only screen and (max-width: 480px) and (min-width: 0px) {
     .messageImg {
-        width: 220px;
+        width: 90%;
         display: flex;
     }
     .time {
         top: 5px;
     }
-    .textMessage {
-        max-width: 150px;
-    }
     .messageUser {
         width: 90%;
-        display: flex;
-        margin: 20px 20px 20px 20px;
-    }
-    .cornerUser {
-        left: 220px;
-        bottom: -65px;
     }
 }
