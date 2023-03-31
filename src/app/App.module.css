@@ -22,9 +22,11 @@
         display: grid;
         grid-template-areas:
             "head head"
+            "burgerNav burgerNav"
             "content content";
-        grid-template-columns: 1fr 1fr;
-        overflow-x: hidden;
+        grid-template-columns: 1fr;
+        grid-template-rows: 80px 40px 1fr;
+        /*overflow-x: hidden;*/
         position: relative;
     }
 

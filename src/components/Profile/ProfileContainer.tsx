@@ -14,6 +14,7 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {ReducerPropsType} from "redux/redux-store";
 import {DataFromFormDataType} from "components/Profile/MyPosts/ProfileInfo/ProfileDataForm/ProfileDataForm";
+import s from './ProfileContainer.module.css'
 
 
 type MapStateToPropsType = {
@@ -65,7 +66,7 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
 
 	render() {
 		return (<>
-				<div>
+				<div className={s.profileContainer}>
 					<Profile {...this.props}
 									 isOwner={!this.props.match.params.userId}
 									 profile={this.props.profile}

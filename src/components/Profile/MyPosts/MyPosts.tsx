@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 import c from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {PostType} from "../../../redux/profile-reducer";
+import {PostType} from "redux/profile-reducer";
 import {AddPostReduxForm, FormPostDataType} from "./Post/AddPostForm";
 
 
@@ -20,7 +20,7 @@ export const MyPosts = memo((props: MyPostsProps) => {
 
     return (
         <div className={c.postsBlock}>
-            <h3>My posts</h3>
+            <h3 className={c.title}>My posts</h3>
             <AddPostReduxForm onSubmit={onAddPost}/>
             <div className={c.posts}>
                 {post.map(el =>

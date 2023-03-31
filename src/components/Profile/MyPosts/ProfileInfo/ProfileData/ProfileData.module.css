@@ -1,0 +1,15 @@
+.profileDataBlock {
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.nameBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.settingsApplicationsIcon {
+    margin-left: 5px;
+    cursor: pointer;
+}

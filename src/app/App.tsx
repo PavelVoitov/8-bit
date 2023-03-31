@@ -14,6 +14,9 @@ import {ReducerPropsType, store} from "redux/redux-store";
 import {Preloader} from "components/common/Preloader/Preloader";
 import {withSuspense} from "hoc/withSuspense";
 import {PageNotFound} from "components/PageNotFound/PageNotFound";
+import {BurgerNav} from "components/Navbar/burgerNav/BurgerNav";
+import {NavLinks} from "components/Navbar/NavLinks/NavLinks";
+import c from '../../src/components/Navbar/burgerNav/BurgerNav.module.css'
 
 const ProfileContainer = React.lazy(() => import('../components/Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('../components/Dialogs/DialogsContainer'));
@@ -52,20 +55,27 @@ class App extends React.Component<AppPropsType, {}> {
 			<div className={s.appWrapper}>
 				<HeaderContainer/>
 				<Navbar/>
-				{/*<BurgerNav/>*/}
-				<div className={s.appWrapperContent}>
-					<Switch>
-						<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>
-						<Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
-						<Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
-						<Route path={'/videos'} render={() => <Video/>}/>
-						<Route path={'/music'} render={() => <Music/>}/>
-						<Route path={'/settings'} render={() => <Settings/>}/>
-						<Route path={'/users'} render={() => <UsersContainer/>}/>
-						<Route path={'/login'} render={withSuspense(Login)}/>
-						<Route exact={true} path={'*'} render={() => <PageNotFound/>}/>
-					</Switch>
-				</div>
+				<BurgerNav/>
+						<div className={s.appWrapperContent}>
+							<Switch>
+								<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>
+								<Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
+								<Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
+								<Route path={'/videos'} render={() => <Video/>}/>
+								<Route path={'/music'} render={() => <Music/>}/>
+								<Route path={'/settings'} render={() => <Settings/>}/>
+								<Route path={'/users'} render={() => <UsersContainer/>}/>
+								<Route path={'/login'} render={withSuspense(Login)}/>
+								<Route exact={true} path={'*'} render={() => <PageNotFound/>}/>
+							</Switch>
+						</div>
+
+		<div className={c.menu}>
+			<div className={c.blur}>
+				<NavLinks/>
+			</div>
+		</div>
+
 			</div>
 
 		)

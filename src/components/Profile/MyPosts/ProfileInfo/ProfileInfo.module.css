@@ -2,12 +2,24 @@
     margin: 10px;
 }
 
+.photoEdit {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.iconEditPhoto {
+    position: relative;
+    top: -7px;
+    left: -12px;
+}
+
 .description p {
     font-weight: bold;
     color: #82c5ec;
     display: inline-block;
     margin-left: 20px;
-
 }
 
 .fon {

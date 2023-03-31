@@ -1,75 +1,32 @@
-.burgerNavBlock {
-    display: none;
-    background-color: rgba(31, 103, 44, 0.9);
-    position: relative;
-    top: 0;
-    left: 50px;
-    z-index: 1;
+.burgerNav {
+    height: 40%;
+    position: fixed;
+    right: 0;
+    top: 80px;
+    z-index: 3;
+}
+
+.burgerImg {
+    height: 40px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.menu {
+    background-color: #153b15;
+    opacity: 0.95;
+    position: fixed;
     width: 100vw;
     height: 100vh;
-    transform: rotate(0deg) translate(0px, 0px);
-    transition: 1s;
 }
 
-.burgerNavBlockOpen {
-    position: relative;
-    top: 0;
-    left: -330px;
-    width: 101vw;
-    height: 100vh;
-    overflow-y: hidden;
-}
-
-.burgerNavImgCloseNone {
+.blur {
     display: flex;
-    position: absolute;
-    top: 90px;
-    right: 20px;
-    z-index: 10;
-    /*z-index: -1;*/
-    /*opacity: 0;*/
-}
-
-.navLinksBlock {
-    display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 80px;
-}
-
-.burgerNavImg {
-    display: none;
-    justify-content: end;
-    transition: 1s linear;
-}
-
-.burgerNavImg img {
-    display: inline-block;
-    padding-top: 10px;
-    padding-right: 10px;
-}
-
-@media only screen and (max-width: 480px) and (min-width: 0px)  {
-    .burgerNavImg {
-        display: flex;
-        position: absolute;
-        top: 0;
-        width: 40px;
-        height: 40px;
-        right: 5px;
-        z-index: 2;
-    }
-    .burgerNavBlock {
-        display: inline-block;
-    }
-    .burgerNavImgClose {
-        display: flex;
-        position: absolute;
-        top: 90px;
-        right: 20px;
-        z-index: 10;
-        /*z-index: -1;*/
-        /*opacity: 0;*/
-    }
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+    position: absolute;
 }

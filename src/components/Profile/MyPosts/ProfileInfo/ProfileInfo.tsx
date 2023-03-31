@@ -10,6 +10,8 @@ import {
 	ProfileDataReduxForm
 } from "components/Profile/MyPosts/ProfileInfo/ProfileDataForm/ProfileDataForm";
 import {useDispatch} from "react-redux";
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import {IconButton} from "@mui/material";
 
 type ProfileInfoProps = {
 	profile: ProfilePropsType
@@ -65,8 +67,19 @@ export const ProfileInfo = ({
 	return (
 		<div>
 			<div className={c.description}>
-				<img className={c.avatar} src={profile.photos?.large || userPhoto} alt={'your avatar'}/>
-				{isOwner ? <input type="file" onChange={onMainPhotoSelected}/> : ''}
+				<div className={c.photoEdit}>
+					<div>
+						<img className={c.avatar} src={profile.photos?.large || userPhoto} alt={'your avatar'}/>
+					</div>
+					<div className={c.iconEditPhoto}>
+						{isOwner ?
+							<IconButton color="inherit" aria-label="upload picture" component="label">
+								<input hidden accept="image/*" type="file" onChange={onMainPhotoSelected}/>
+								<AddAPhotoIcon />
+							</IconButton>
+							: ''}
+					</div>
+				</div>
 				<div>
 					{editMode
 						? <ProfileDataReduxForm

@@ -1,9 +1,11 @@
 import {ProfileStatusWithHooks} from "components/Profile/MyPosts/ProfileInfo/ProfileStatus/ProfileStatusWithHooks";
 import React from "react";
 import {ProfilePropsType} from "redux/profile-reducer";
+import s from './ProfileData.module.css'
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 
 type Props = {
-	contactsObj:  JSX.Element[]
+	contactsObj: JSX.Element[]
 	profile: ProfilePropsType
 	updateStatus: (status: string) => void
 	status: string
@@ -14,12 +16,20 @@ type Props = {
 export const ProfileData = ({contactsObj, profile, updateStatus, status, isOwner, goToEditMode}: Props) => {
 	return (
 		<div>
-			{isOwner ? <div><button onClick={goToEditMode}>edit</button></div> : ''}
-			<h2>{profile.fullName}</h2>
+			<div className={s.nameBlock}>
+				<div><h2>{profile.fullName}</h2></div>
+				{isOwner
+					? <SettingsApplicationsIcon
+						onDoubleClick={goToEditMode}
+						className={s.settingsApplicationsIcon}
+						data-title={'edit profile data'}
+					></SettingsApplicationsIcon>
+					: ''}
+			</div>
 			<ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
-			<div>
+			<div className={s.profileDataBlock}>
 				<div>
-					<b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}
+					<b>Looking for a job: </b>{profile.lookingForAJob ? 'yes' : 'no'}
 				</div>
 				{profile.lookingForAJob ? <div>
 					<b>My professional skills:</b> {profile.lookingForAJobDescription}

@@ -1,0 +1,10 @@
+.postForm {
+    width: 40%;
+    margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 480px) and (min-width: 0px)  {
+    .postForm {
+        width: 100%;
+    }
+}
