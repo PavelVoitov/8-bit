@@ -6,6 +6,7 @@ import editIcon from 'assets/images/edit-icon.png'
 type ProfileStatusPropsType = {
 	status: string
 	updateStatus: (status: string) => void
+	isOwner: boolean
 }
 
 
@@ -38,12 +39,17 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
 		}
 	}
 
+	const editModeBlock = !editMode && <div className={s.statusBlock}>
+      <span className={s.status} onClick={activateEditMode}>{props.status || '-----'}</span>
+      <img src={editIcon} alt="edit icon" onClick={activateEditMode}/>
+  </div>
+
+
 	return (
 		<>
-			{!editMode && <div className={s.statusBlock}>
-          <span className={s.status} onDoubleClick={activateEditMode}>{props.status || '-----'}</span>
-          <img src={editIcon} alt="edit icon" onDoubleClick={activateEditMode}/>
-      </div>
+			{!props.isOwner
+				? <span className={s.userStatus}>{props.status || '-----'}</span>
+				: editModeBlock
 			}
 			{editMode && <div className={s.statusBlock}>
           <input

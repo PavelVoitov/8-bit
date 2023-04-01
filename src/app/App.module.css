@@ -3,18 +3,15 @@
     grid-template-areas:
   "head head"
   "nav content";
-    grid-template-rows: 80px 100vh;
-    grid-template-columns: 180px 10fr;
+    grid-template-rows: 80px 1fr;
+    grid-template-columns: 200px 10fr;
     font-family: 'Courier', monospace;
-    /*height: 100%;*/
 }
 
 .appWrapperContent {
     position: relative;
     grid-area: content;
     background-color: #bd4c4c;
-    padding-bottom: 40px;
-
 }
 
 @media only screen and (max-width: 480px) and (min-width: 0px) {
@@ -28,9 +25,5 @@
         grid-template-rows: 80px 40px 1fr;
         position: relative;
         overflow-x: hidden;
-    }
-
-    .appWrapperContent {
-        margin-right: 20px;
     }
 }

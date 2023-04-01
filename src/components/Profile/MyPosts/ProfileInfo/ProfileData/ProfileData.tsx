@@ -20,13 +20,13 @@ export const ProfileData = ({contactsObj, profile, updateStatus, status, isOwner
 				<div><h2>{profile.fullName}</h2></div>
 				{isOwner
 					? <SettingsApplicationsIcon
-						onDoubleClick={goToEditMode}
+						onClick={goToEditMode}
 						className={s.settingsApplicationsIcon}
 						data-title={'edit profile data'}
 					></SettingsApplicationsIcon>
 					: ''}
 			</div>
-			<ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+			<ProfileStatusWithHooks status={status} updateStatus={updateStatus} isOwner={isOwner}/>
 			<div className={s.profileDataBlock}>
 				<div>
 					<b>Looking for a job: </b>{profile.lookingForAJob ? 'yes' : 'no'}

@@ -1,22 +1,36 @@
 
 .friendsSideBar {
     display: grid;
-    grid-template-columns: repeat(1, 50px);
-    grid-template-rows: repeat(2, 2fr);
+    grid-template-areas:
+            "title title title"
+            "friend friend friend";
+    grid-template-columns: repeat(1, 30px);
+    grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 10px;
+    margin: 0 10px 10px 10px;
 }
 
-.friendsSideBar div:nth-child(1) {
-    grid-column-start: 1;
-    grid-column-end: 4;
+.friendsSideBarTitle {
+    grid-area: title;
 }
 
+.friends {
+    display: grid;
+    grid-area: friend;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+}
 
 .friendsSideBar img {
     width: 30px;
     height: 30px;
 }
 
-.friendsName {
-   font-size: 12px;
+.friend {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
 }

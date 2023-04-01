@@ -16,6 +16,8 @@
 .postText {
     display: inline-block;
     margin-left: 10px;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .like {

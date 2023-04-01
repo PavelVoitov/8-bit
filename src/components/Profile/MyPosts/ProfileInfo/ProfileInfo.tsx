@@ -92,7 +92,7 @@ export const ProfileInfo = ({
 							profile={profile}
 							updateStatus={updateStatus}
 							status={status}
-							isOwner={true}
+							isOwner={isOwner}
 							goToEditMode={goToEditMode}
 						/>}
 				</div>

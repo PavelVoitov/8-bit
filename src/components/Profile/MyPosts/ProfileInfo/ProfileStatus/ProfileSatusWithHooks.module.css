@@ -16,3 +16,8 @@
     display: inline-block;
     margin-bottom: 0;
 }
+
+.userStatus {
+    display: block;
+    margin-bottom: 10px;
+}

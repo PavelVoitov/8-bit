@@ -8,11 +8,19 @@ type HeaderPropsType = {
 	logout: () => void
 }
 
+
 export const Header = (props: HeaderPropsType) => {
+
+
 	return (
 		<header className={c.header}>
 			<div className={c.headerBlockImg}>
-				<img src={require('../../assets/images/logo.png')} alt="header"/>
+				<NavLink to="/profile">
+				<img
+				src={require('../../assets/images/logo.png')}
+				alt="header"
+			/>
+			</NavLink>
 			</div>
 			<div className={c.headerBlockSpan}>
 				<span className={c.title}>8-bit</span>

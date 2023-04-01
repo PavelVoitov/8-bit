@@ -3,7 +3,7 @@ import {Input, Textarea} from "components/common/FormsControls/FormsControls";
 import {required} from "utils/validators/validators";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {ProfilePropsType} from "redux/profile-reducer";
-import s from "components/common/FormsControls/FormControls.module.css";
+import s from './ProfileDataForm.module.css'
 
 
 export type DataFromFormDataType = {
@@ -34,8 +34,8 @@ const ProfileDataForm: React.FC<InjectedFormProps<DataFromFormDataType, ProfileD
 		profile
 	}) => {
 	return (
-		<form onSubmit={handleSubmit}>
-			<div style={{marginBottom: 20, width: 250}}>
+		<form onSubmit={handleSubmit} className={s.profileDataForm}>
+			<div className={s.button}>
 				<button>save</button>
 				{error &&
             <div className={s.formSummaryError}>
@@ -51,15 +51,19 @@ const ProfileDataForm: React.FC<InjectedFormProps<DataFromFormDataType, ProfileD
 				/>
 			</div>
 			<div>
-				<div style={{display: "flex", marginBottom: 20}}>
-					<b>Looking for a job:</b>
-					<Field
-						type="checkbox"
-						placeholder={'Looking for a job'}
-						component={Input}
-						name={'lookingForAJob'}
-						style={{width: 30}}
-					/>
+				<div className={s.LookingForAJob}>
+					<div>
+						<b>Looking for a job:</b>
+					</div>
+					<div>
+						<Field
+							type="checkbox"
+							placeholder={'Looking for a job'}
+							component={Input}
+							name={'lookingForAJob'}
+							style={{width: 30}}
+						/>
+					</div>
 				</div>
 				<div>
 					<b>My professional skills:</b>

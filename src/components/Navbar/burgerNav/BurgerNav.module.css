@@ -5,7 +5,6 @@
     right: 0;
     top: 80px;
     z-index: 3;
-    margin-right: 20px;
 }
 
 .burgerImg {
@@ -39,4 +38,10 @@
     backdrop-filter: blur(2px);
     position: absolute;
     transition: all 0.4s;
+}
+
+@media only screen and (min-width: 480px) {
+    .burgerNav {
+       display: none;
+    }
 }
