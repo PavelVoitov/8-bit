@@ -1,22 +1,21 @@
 import burgerMenuIsClose from '../../../assets/images/burger-menu.png'
 import burgerMenuIsOpen from '../../../assets/images/burger-menu-isOpen.png'
 import s from './BurgerNav.module.css'
-import {useState} from "react";
 
-export const BurgerNav = () => {
 
-	const [open, setOpen] = useState(false)
+type Props = {
+	openCloseMenu: () => void
+	menuOpen: boolean
+}
 
-	const handleOpenClose = () => {
-		setOpen(!open)
-	}
+export const BurgerNav = ({openCloseMenu, menuOpen}: Props) => {
 
 	return (
 		<div className={s.burgerNav}>
 			<img
 				className={s.burgerImg}
-				onClick={handleOpenClose}
-				src={open ? burgerMenuIsOpen : burgerMenuIsClose}
+				onClick={() => openCloseMenu()}
+				src={menuOpen ? burgerMenuIsOpen : burgerMenuIsClose}
 				alt="menu"
 			/>
 		</div>

@@ -31,7 +31,21 @@ type mapStateToPropsType = {
 	initialized: boolean
 }
 
+type StateType = {
+	menuOpen: boolean
+}
+
 class App extends React.Component<AppPropsType, {}> {
+	state: StateType = {
+		menuOpen: false
+	}
+
+	openCloseMenu = () => {
+		this.setState({
+			menuOpen: !this.state.menuOpen
+		})
+	}
+
 	catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
 		console.log(promiseRejectionEvent)
 	}
@@ -55,7 +69,7 @@ class App extends React.Component<AppPropsType, {}> {
 			<div className={s.appWrapper}>
 				<HeaderContainer/>
 				<Navbar/>
-				<BurgerNav/>
+				<BurgerNav openCloseMenu={this.openCloseMenu} menuOpen={this.state.menuOpen}/>
 						<div className={s.appWrapperContent}>
 							<Switch>
 								<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>
@@ -69,13 +83,11 @@ class App extends React.Component<AppPropsType, {}> {
 								<Route exact={true} path={'*'} render={() => <PageNotFound/>}/>
 							</Switch>
 						</div>
-
-		<div className={c.menu}>
-			<div className={c.blur}>
-				<NavLinks/>
+		<div className={this.state.menuOpen ? `${c.menu} ${c.active}` : `${c.menu}`}>
+			<div className={this.state.menuOpen ? `${c.blur}` : ''}>
+				<NavLinks />
 			</div>
 		</div>
-
 			</div>
 
 		)

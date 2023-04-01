@@ -21,16 +21,16 @@
     .appWrapper {
         display: grid;
         grid-template-areas:
-            "head head"
-            "burgerNav burgerNav"
-            "content content";
-        grid-template-columns: 1fr;
+            "head"
+            "burgerNav"
+            "content";
+        grid-template-columns: 100vw;
         grid-template-rows: 80px 40px 1fr;
-        /*overflow-x: hidden;*/
         position: relative;
+        overflow-x: hidden;
     }
 
-/*    .appWrapperContent {*/
-/*        padding: 20px;*/
-/*    }*/
+    .appWrapperContent {
+        margin-right: 20px;
+    }
 }
