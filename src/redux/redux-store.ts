@@ -31,10 +31,8 @@ export const store = legacy_createStore(reducers, composeEnhancers(
     applyMiddleware(thunkMiddleware)
 ));
 
-// export const store: Store<ReducerPropsType> = legacy_createStore(reducer, applyMiddleware(thunkMiddleware))
 
 export type AppActionsType = MessagesActionType | ProfileActionsTypes | UsersActionType | InitializedAppActionType
-
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, ReducerPropsType, unknown, AppActionsType>
 
 // @ts-ignore

@@ -1,4 +1,4 @@
-
+import borisAvatar from '../../src/assets/images/boris-avatar.png'
 
 export type FriendsType = {
     id: number
@@ -21,7 +21,7 @@ const initialState = {
         {
             id: 3,
             name: "Boris",
-            avatar: 'https://avatarfiles.alphacoders.com/111/111588.jpg'
+            avatar: borisAvatar
         },
     ]
 }

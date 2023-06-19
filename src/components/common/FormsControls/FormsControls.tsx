@@ -32,7 +32,6 @@ export const Textarea = (props: TextareaPropsType) => {
     return (
         <FormControl {...props}><textarea {...input} {...restProps}/></FormControl>
     )
-
 }
 
 export const Input = (props: TextareaPropsType) => {
