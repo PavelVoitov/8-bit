@@ -1,4 +1,4 @@
-import {usersAPI} from "api/api";
+import {followAPIType, usersAPI} from "api/api";
 import {Dispatch} from "redux";
 import {updateObjectInArray} from "utils/object-helpers";
 
@@ -46,7 +46,6 @@ const initialState: UsersType = {
 	currentPage: 1,
 	isFetching: false,
 	followingInProgress: []
-
 }
 export const usersReducer = (users: UsersType = initialState, action: UsersActionType): UsersType => {
 
@@ -90,10 +89,10 @@ export const usersReducer = (users: UsersType = initialState, action: UsersActio
 	}
 }
 
-const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: Function, actionCreator: Function) => {
+const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: (userId: number) => Promise<followAPIType>, actionCreator: Function) => {
 	dispatch(toggleFollowingProgress(true, userId))
 	const data = await apiMethod(userId)
-	if (data.resultCode == 0) {
+	if (data.resultCode === 0) {
 		dispatch(actionCreator(userId))
 	}
 	dispatch(toggleFollowingProgress(false, userId))
