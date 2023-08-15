@@ -1,5 +1,5 @@
 import React from 'react';
-import  s from 'app/App.module.css';
+import s from 'app/App.module.css';
 import {Navbar} from "components/Navbar/Navbar";
 import {HashRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Video} from "components/Video/Video";
@@ -9,7 +9,7 @@ import UsersContainer from "../components/Users/UsersContainer";
 import HeaderContainer from "../components/Header/HeaderContainer";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
-import {initializeApp} from "redux/app-reducer";
+import {initializeAppAC} from "redux/app-reducer";
 import {ReducerPropsType, store} from "redux/redux-store";
 import {Preloader} from "components/common/Preloader/Preloader";
 import {withSuspense} from "hoc/withSuspense";
@@ -51,7 +51,7 @@ class App extends React.Component<AppPropsType, {}> {
 	}
 
 	componentDidMount() {
-		this.props.initializeApp()
+		this.props.initializeApp();
 		window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
 	}
 
@@ -70,24 +70,24 @@ class App extends React.Component<AppPropsType, {}> {
 				<HeaderContainer/>
 				<Navbar/>
 				<BurgerNav openCloseMenu={this.openCloseMenu} menuOpen={this.state.menuOpen}/>
-						<div className={s.appWrapperContent}>
-							<Switch>
-								<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>
-								<Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
-								<Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
-								<Route path={'/videos'} render={() => <Video/>}/>
-								<Route path={'/music'} render={() => <Music/>}/>
-								<Route path={'/settings'} render={() => <Settings/>}/>
-								<Route path={'/users'} render={() => <UsersContainer/>}/>
-								<Route path={'/login'} render={withSuspense(Login)}/>
-								<Route exact={true} path={'*'} render={() => <PageNotFound/>}/>
-							</Switch>
-						</div>
-		<div className={this.state.menuOpen ? `${c.menu} ${c.active}` : `${c.menu}`}>
-			<div className={this.state.menuOpen ? `${c.blur}` : ''}>
-				<NavLinks />
-			</div>
-		</div>
+				<div className={s.appWrapperContent}>
+					<Switch>
+						<Route exact path="/">{this.props.initialized ? <Redirect to="/profile"/> : <Login/>}</Route>
+						<Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
+						<Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
+						<Route path={'/videos'} render={() => <Video/>}/>
+						<Route path={'/music'} render={() => <Music/>}/>
+						<Route path={'/settings'} render={() => <Settings/>}/>
+						<Route path={'/users'} render={() => <UsersContainer/>}/>
+						<Route path={'/login'} render={withSuspense(Login)}/>
+						<Route exact={true} path={'*'} render={() => <PageNotFound/>}/>
+					</Switch>
+				</div>
+				<div className={this.state.menuOpen ? `${c.menu} ${c.active}` : `${c.menu}`}>
+					<div className={this.state.menuOpen ? `${c.blur}` : ''}>
+						<NavLinks/>
+					</div>
+				</div>
 			</div>
 
 		)
@@ -102,7 +102,7 @@ const mapStateToProps = (state: ReducerPropsType) => {
 
 const AppContainer = compose<React.ComponentType>(
 	withRouter,
-	connect(mapStateToProps, {initializeApp}))(App)
+	connect(mapStateToProps, {initializeApp: initializeAppAC}))(App)
 
 export const MainApp = () => {
 	return (

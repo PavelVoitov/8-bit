@@ -1,7 +1,5 @@
-import {AnyAction} from "redux";
 import {getAuthUserDataThunk} from "./auth-reducer";
-import {ThunkDispatch} from "redux-thunk";
-import {AppThunk} from "./redux-store";
+import {call, put} from "redux-saga/effects";
 
 
 export type InitializedType = {
@@ -31,11 +29,14 @@ export const appReducer = (state: InitializedType = initialState, action: Initia
 
 export const initializedSuccess = () => ({type: 'app/INITIALIZED-SUCCESS'} as const)
 
-export const initializeApp = (): AppThunk => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
-    const promise = dispatch(getAuthUserDataThunk())
-    promise.then(() => {
-        dispatch(initializedSuccess())
-    })
-
+//saga
+export function* initializeApp() {
+    yield call(getAuthUserDataThunk)
+    yield put(initializedSuccess())
 }
+
+export const initializeAppAC = () => (
+  {type: 'app/INITIALIZED-APP'}
+)
+
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {logout} from "../../redux/auth-reducer";
-import {ReducerPropsType} from "../../redux/redux-store";
+import {logoutAC} from "redux/auth-reducer";
+import {ReducerPropsType} from "redux/redux-store";
 
 
 type mapStateToPropsType = {
@@ -29,4 +29,4 @@ const mapStateToProps = (state: ReducerPropsType): mapStateToPropsType => {
     }
 }
 
-export default connect(mapStateToProps, {logout})(HeaderContainer)
+export default connect(mapStateToProps, {logout: logoutAC})(HeaderContainer)

@@ -4,6 +4,8 @@ import {AppThunk} from "./redux-store";
 import {stopSubmit} from "redux-form";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from 'redux';
+import {call, put} from "redux-saga/effects";
+import {AxiosResponse} from "axios";
 
 
 export type AuthorType = {
@@ -89,13 +91,11 @@ export const getCaptchaUrl = () => async (dispatch: Dispatch) => {
 	dispatch(getCaptchaUrlSuccess(captchaUrl))
 }
 
-export const logout = () => {
-	return (dispatch: Dispatch) => {
-		authAPI.logout()
-			.then((data) => {
-				if (data.data.resultCode === 0) {
-					dispatch(setAuthUserData(null, null, null, false))
-				}
-			})
+export function* logout() {
+	const response: AxiosResponse<any> = yield call(authAPI.logout)
+	if (response.data.resultCode === 0) {
+		yield put(setAuthUserData(null, null, null, false))
 	}
 }
+
+export const logoutAC = () => ({type: "auth/LOGOUT-USER"})
