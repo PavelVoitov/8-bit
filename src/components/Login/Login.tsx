@@ -3,11 +3,11 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "utils/validators/validators";
-import {login} from "redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {ReducerPropsType} from "redux/redux-store";
 import s from '../common/FormsControls/FormControls.module.css'
 import style from './Login.module.css'
+import {loginAC} from "redux/auth-sagas";
 
 
 export type FormDataType = {
@@ -110,4 +110,4 @@ const mapStateToProps = (state: ReducerPropsType): MapStateToProps => {
 
 }
 
-export default connect(mapStateToProps, {login})(Login)
+export default connect(mapStateToProps, {login: loginAC})(Login)

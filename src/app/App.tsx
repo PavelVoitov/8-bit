@@ -9,7 +9,6 @@ import UsersContainer from "../components/Users/UsersContainer";
 import HeaderContainer from "../components/Header/HeaderContainer";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
-import {initializeAppAC} from "redux/app-reducer";
 import {ReducerPropsType, store} from "redux/redux-store";
 import {Preloader} from "components/common/Preloader/Preloader";
 import {withSuspense} from "hoc/withSuspense";
@@ -17,6 +16,7 @@ import {PageNotFound} from "components/PageNotFound/PageNotFound";
 import {BurgerNav} from "components/Navbar/burgerNav/BurgerNav";
 import {NavLinks} from "components/Navbar/NavLinks/NavLinks";
 import c from '../../src/components/Navbar/burgerNav/BurgerNav.module.css'
+import {initializeAppAC} from "redux/app-sagas";
 
 const ProfileContainer = React.lazy(() => import('../components/Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('../components/Dialogs/DialogsContainer'));

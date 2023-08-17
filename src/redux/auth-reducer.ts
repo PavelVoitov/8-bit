@@ -1,13 +1,3 @@
-import {Dispatch} from "redux";
-import {authAPI, securityAPI} from "api/api";
-import {AppThunk} from "./redux-store";
-import {stopSubmit} from "redux-form";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from 'redux';
-import {call, put} from "redux-saga/effects";
-import {AxiosResponse} from "axios";
-
-
 export type AuthorType = {
 	id: string | null
 	email: string | null
@@ -31,7 +21,6 @@ type GetCaptchaUrlSuccessAT = ReturnType<typeof getCaptchaUrlSuccess>
 
 
 export type UsersActionType = setUserDataAT | GetCaptchaUrlSuccessAT
-
 
 export const authReducer = (state: AuthorType = initialState, action: UsersActionType): AuthorType => {
 	switch (action.type) {
@@ -62,40 +51,3 @@ export const getCaptchaUrlSuccess = (captchaUrl: string) => ({
 } as const)
 
 
-//thunks
-export const getAuthUserDataThunk = () => async (dispatch: Dispatch) => {
-	const data = await authAPI.setAuth();
-	if (data.resultCode === 0) {
-		let {id, email, login} = data.data
-		dispatch(setAuthUserData(id, email, login, true))
-	}
-}
-
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string): AppThunk => async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
-	const data = await authAPI.login(email, password, rememberMe, captcha)
-	if (data.resultCode === 0) {
-		//success get auth data
-		await dispatch(getAuthUserDataThunk())
-	} else {
-		if (data.resultCode === 10) {
-			await dispatch(getCaptchaUrl())
-		}
-		let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
-		dispatch(stopSubmit('login', {_error: message}))
-	}
-}
-
-export const getCaptchaUrl = () => async (dispatch: Dispatch) => {
-	const response = await securityAPI.getCaptchaUrl()
-	const captchaUrl = response.data.url
-	dispatch(getCaptchaUrlSuccess(captchaUrl))
-}
-
-export function* logout() {
-	const response: AxiosResponse<any> = yield call(authAPI.logout)
-	if (response.data.resultCode === 0) {
-		yield put(setAuthUserData(null, null, null, false))
-	}
-}
-
-export const logoutAC = () => ({type: "auth/LOGOUT-USER"})

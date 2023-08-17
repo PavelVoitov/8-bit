@@ -1,7 +1,6 @@
 import axios from "axios";
 import {DataFromFormDataType} from "components/Profile/MyPosts/ProfileInfo/ProfileDataForm/ProfileDataForm";
 
-
 const instance = axios.create({
 	withCredentials: true,
 	baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -79,6 +78,21 @@ export type followAPIType = {
 export enum ResultCodeEnum {
 	Success,
 	Error,
+	Captcha = 10,
+}
+
+export type CaptchaUrlType = {
+	url: string
+}
+
+export type AuthUserDataType = {
+	resultCode: ResultCodeEnum
+	messages: string[],
+		data: {
+		id: string
+		email: string
+		login: string
+}
 }
 
 

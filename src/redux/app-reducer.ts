@@ -1,7 +1,3 @@
-import {getAuthUserDataThunk} from "./auth-reducer";
-import {call, put} from "redux-saga/effects";
-
-
 export type InitializedType = {
     initialized: boolean
 }
@@ -28,15 +24,5 @@ export const appReducer = (state: InitializedType = initialState, action: Initia
 }
 
 export const initializedSuccess = () => ({type: 'app/INITIALIZED-SUCCESS'} as const)
-
-//saga
-export function* initializeApp() {
-    yield call(getAuthUserDataThunk)
-    yield put(initializedSuccess())
-}
-
-export const initializeAppAC = () => (
-  {type: 'app/INITIALIZED-APP'}
-)
 
 
