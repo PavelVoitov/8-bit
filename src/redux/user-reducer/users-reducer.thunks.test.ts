@@ -1,4 +1,4 @@
-import {follow, followSuccess, toggleFollowingProgress, unfollow, unfollowSuccess} from "redux/users-reducer";
+import {follow, followSuccess, toggleFollowingProgress, unfollow, unfollowSuccess} from "redux/user-reducer/users-reducer";
 import {followAPIType, ResultCodeEnum, usersAPI} from "api/api";
 
 jest.mock("api/api")

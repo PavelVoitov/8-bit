@@ -1,6 +1,6 @@
-import {ReducerPropsType} from "./redux-store";
+import {ReducerPropsType} from "redux/redux-store";
 import {createSelector} from "reselect";
-import {UserType} from "./users-reducer";
+import {UserType} from "redux/user-reducer/users-reducer";
 
 
 const getUsersSelector = (state: ReducerPropsType) => {

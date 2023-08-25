@@ -1,7 +1,7 @@
 import React from "react";
 import {ReducerPropsType} from "redux/redux-store";
 import {Dialogs} from "components/Dialogs/Dialogs/Dialogs";
-import {MessagesType, sendMessageAC} from "redux/messages-reducer";
+import {MessagesType, sendMessageAC} from "redux/messages-reducer/messages-reducer";
 import {connect} from "react-redux";
 import {compose, Dispatch} from 'redux'
 import {RouteComponentProps, withRouter} from "react-router-dom";

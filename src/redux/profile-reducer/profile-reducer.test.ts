@@ -1,4 +1,4 @@
-import {addPostAC, deletePost, ProfilePagePropsType, profileReducer} from "./profile-reducer";
+import {addPostAC, deletePost, ProfilePagePropsType, profileReducer} from "redux/profile-reducer/profile-reducer";
 
 const state: ProfilePagePropsType = {
 	posts: [

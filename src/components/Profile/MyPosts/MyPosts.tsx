@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 import c from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {PostType} from "redux/profile-reducer";
+import {PostType} from "redux/profile-reducer/profile-reducer";
 import {AddPostReduxForm, FormPostDataType} from "./Post/AddPostForm";
 
 

@@ -7,7 +7,7 @@ import {Redirect} from "react-router-dom";
 import {ReducerPropsType} from "redux/redux-store";
 import s from '../common/FormsControls/FormControls.module.css'
 import style from './Login.module.css'
-import {loginAC} from "redux/auth-sagas";
+import {loginAC} from "redux/auth-reducer/auth-sagas";
 
 
 export type FormDataType = {

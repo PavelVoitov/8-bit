@@ -6,7 +6,7 @@ import {
 	unfollowSuccess,
 	usersReducer,
 	UsersType
-} from "redux/users-reducer";
+} from "redux/user-reducer/users-reducer";
 
 let state: UsersType;
 

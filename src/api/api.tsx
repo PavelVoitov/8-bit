@@ -26,7 +26,7 @@ export const usersAPI = {
 
 export const authAPI = {
 	setAuth() {
-		return instance.get(`auth/me`)
+		return instance.get<AuthUserDataType>(`auth/me`)
 			.then(response => response.data)
 	},
 	login(email: string, password: string, rememberMe: boolean, captcha: string) {

@@ -2,7 +2,7 @@ import React from "react";
 import {Input, Textarea} from "components/common/FormsControls/FormsControls";
 import {required} from "utils/validators/validators";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {ProfilePropsType} from "redux/profile-reducer";
+import {ProfilePropsType} from "redux/profile-reducer/profile-reducer";
 import s from './ProfileDataForm.module.css'
 
 

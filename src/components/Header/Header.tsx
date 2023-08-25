@@ -11,7 +11,6 @@ type HeaderPropsType = {
 
 export const Header = (props: HeaderPropsType) => {
 
-
 	return (
 		<header className={c.header}>
 			<div className={c.headerBlockImg}>

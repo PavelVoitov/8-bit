@@ -16,7 +16,7 @@ import {PageNotFound} from "components/PageNotFound/PageNotFound";
 import {BurgerNav} from "components/Navbar/burgerNav/BurgerNav";
 import {NavLinks} from "components/Navbar/NavLinks/NavLinks";
 import c from '../../src/components/Navbar/burgerNav/BurgerNav.module.css'
-import {initializeAppAC} from "redux/app-sagas";
+import {initializeAppAC} from "redux/app-reducer/app-sagas";
 
 const ProfileContainer = React.lazy(() => import('../components/Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('../components/Dialogs/DialogsContainer'));
@@ -59,9 +59,7 @@ class App extends React.Component<AppPropsType, {}> {
 		window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
 	}
 
-
 	render() {
-
 		if (!this.props.initialized) {
 			return <Preloader/>
 		}

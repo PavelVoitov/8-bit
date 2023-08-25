@@ -2,18 +2,18 @@ import {authAPI, AuthUserDataType, CaptchaUrlType, followAPIType, securityAPI} f
 import {call, put, takeEvery} from "redux-saga/effects";
 import {AxiosResponse} from "axios";
 import {stopSubmit} from "redux-form";
-import {getCaptchaUrlSuccess, setAuthUserData} from "redux/auth-reducer";
+import {getCaptchaUrlSuccess, setAuthUserData} from "redux/auth-reducer/auth-reducer";
 
 
 //sagas
-function* logout() {
+export function* logout() {
 	const response: AxiosResponse = yield call(authAPI.logout)
 	if (response.data.resultCode === 0) {
 		yield put(setAuthUserData(null, null, null, false))
 	}
 }
 
-function* getCaptchaUrl() {
+export function* getCaptchaUrl() {
 	const response: AxiosResponse<CaptchaUrlType> = yield call(securityAPI.getCaptchaUrl)
 	const captchaUrl = response.data.url
 	yield put(getCaptchaUrlSuccess(captchaUrl))
@@ -27,7 +27,7 @@ export function* getAuthUserData() {
 	}
 }
 
-function* login(action: ReturnType<typeof loginAC>) {
+export function* login(action: ReturnType<typeof loginAC>) {
 	const {email, password, rememberMe, captcha} = action
 	const data: followAPIType = yield call(authAPI.login, email, password, rememberMe, captcha)
 	if (data.resultCode === 0) {
@@ -47,12 +47,12 @@ export const logoutAC = () => ({type: "auth/LOGOUT-USER"})
 export const getCaptchaUrlAC = () => ({type: "auth/GET-CAPTCHA-URL"})
 export const getAuthUserDataAC = () => ({type: "auth/SET-USER"})
 export const loginAC = (email: string, password: string, rememberMe: boolean, captcha: string) => ({
-	type: "auth/USER-LOGIN",
-	email,
-	password,
-	rememberMe,
-	captcha
-})
+		type: "auth/USER-LOGIN",
+			email,
+			password,
+			rememberMe,
+			captcha
+	})
 
 export function* authWatcherSagas() {
 	yield takeEvery("auth/LOGOUT-USER", logout)

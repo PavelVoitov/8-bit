@@ -1,6 +1,6 @@
 import {ProfileStatusWithHooks} from "components/Profile/MyPosts/ProfileInfo/ProfileStatus/ProfileStatusWithHooks";
 import React from "react";
-import {ProfilePropsType} from "redux/profile-reducer";
+import {ProfilePropsType} from "redux/profile-reducer/profile-reducer";
 import s from './ProfileData.module.css'
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 

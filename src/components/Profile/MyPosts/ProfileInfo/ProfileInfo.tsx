@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useLayoutEffect, useState} from "react";
 import c from './ProfileInfo.module.css';
-import {ContactsType, ProfilePropsType, setEditModeSuccess} from "redux/profile-reducer";
+import {ContactsType, ProfilePropsType, setEditModeSuccess} from "redux/profile-reducer/profile-reducer";
 import {Preloader} from "../../../common/Preloader/Preloader";
 import userPhoto from "../../../../assets/images/photosNull.png";
 import {Contact} from "components/Profile/MyPosts/ProfileInfo/Contact/Contact";

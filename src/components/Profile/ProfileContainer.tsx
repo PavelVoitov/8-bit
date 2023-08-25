@@ -8,7 +8,7 @@ import {
 	savePhoto, saveProfile,
 	setUserProfile,
 	updateStatus
-} from "redux/profile-reducer";
+} from "redux/profile-reducer/profile-reducer";
 
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";

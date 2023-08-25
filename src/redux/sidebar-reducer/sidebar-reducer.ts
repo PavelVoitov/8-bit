@@ -1,4 +1,4 @@
-import borisAvatar from '../../src/assets/images/boris-avatar.png'
+import borisAvatar from 'assets/images/boris-avatar.png'
 
 export type FriendsType = {
     id: number

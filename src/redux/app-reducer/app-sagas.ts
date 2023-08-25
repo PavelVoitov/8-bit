@@ -1,6 +1,6 @@
 import {call, put, takeEvery} from "redux-saga/effects";
-import {getAuthUserData} from "redux/auth-sagas";
-import {initializedSuccess} from "redux/app-reducer";
+import {getAuthUserData} from "redux/auth-reducer/auth-sagas";
+import {initializedSuccess} from "redux/app-reducer/app-reducer";
 
 //saga
 export function* initializeApp() {
@@ -9,9 +9,7 @@ export function* initializeApp() {
 }
 
 //action-saga
-export const initializeAppAC = () => (
-	{type: 'app/INITIALIZED-APP'}
-)
+export const initializeAppAC = () => ({type: 'app/INITIALIZED-APP'})
 
 export function* appWatcherSagas() {
 	yield takeEvery('app/INITIALIZED-APP', initializeApp)

@@ -1,5 +1,4 @@
-
-
+import avatarBoris from '../../assets/images/boris-avatar.png'
 
 export type DialogType = {
     id: number
@@ -16,19 +15,31 @@ export type MessageType = {
 
 const initialState : MessagesType = {
     dialogs: [
-        {id: 1, name: "Andrew", avatar: 'https://avatarfiles.alphacoders.com/805/thumb-80545.jpg'},
+        {
+            id: 1,
+            name: "Andrew",
+            avatar: 'https://avatarfiles.alphacoders.com/805/thumb-80545.jpg'
+        },
         {
             id: 2,
             name: "Sasha",
             avatar: 'https://i.pinimg.com/1200x/3b/47/46/3b4746abc4c434aa915f0cd5bd3139e7.jpg'
         },
-        {id: 3, name: "Boris", avatar: 'https://avatarfiles.alphacoders.com/111/111588.jpg'},
+        {
+            id: 3,
+            name: "Boris",
+            avatar: avatarBoris
+        },
         {
             id: 4,
             name: "Dima",
             avatar: 'https://kmesh.io/img/lists/97/avatar-10-ways-being-non-bender-is-actually-better-than-being-bender.jpg'
         },
-        {id: 5, name: "Tanya", avatar: 'https://crosti.ru/users/00/01/5b/55a53fe165/avatar.jpg'}
+        {
+            id: 5,
+            name: "Tanya",
+            avatar: 'https://crosti.ru/users/00/01/5b/55a53fe165/avatar.jpg'
+        }
     ],
     messages: [
         {id: 1, message: 'Hello!', sender: 'I'},

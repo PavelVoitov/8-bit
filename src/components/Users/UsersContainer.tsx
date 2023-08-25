@@ -4,7 +4,7 @@ import {
 	setCurrentPage,
 	unfollow,
 	UserType
-} from "redux/users-reducer";
+} from "redux/user-reducer/users-reducer";
 import {connect} from "react-redux";
 import React from 'react';
 import {Users} from "components/Users/users/Users";
@@ -17,7 +17,7 @@ import {
 	getPageSize,
 	getTotalUsersCount,
 	getUsersSuperSelector
-} from "redux/users-selectors";
+} from "redux/user-reducer/users-selectors";
 import s from './UsersContainer.module.css'
 
 
