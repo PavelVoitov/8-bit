@@ -1,29 +1,30 @@
 import {authAPI, AuthUserDataType, CaptchaUrlType, followAPIType, securityAPI} from "api/api";
 import {call, put, takeEvery} from "redux-saga/effects";
-import {AxiosResponse} from "axios";
 import {stopSubmit} from "redux-form";
 import {getCaptchaUrlSuccess, setAuthUserData} from "redux/auth-reducer/auth-reducer";
 
 
 //sagas
 export function* logout() {
-	const response: AxiosResponse = yield call(authAPI.logout)
-	if (response.data.resultCode === 0) {
+	const response: AuthUserDataType = yield call(authAPI.logout)
+	if (response.resultCode === 0) {
 		yield put(setAuthUserData(null, null, null, false))
 	}
 }
 
 export function* getCaptchaUrl() {
-	const response: AxiosResponse<CaptchaUrlType> = yield call(securityAPI.getCaptchaUrl)
-	const captchaUrl = response.data.url
+	const response: CaptchaUrlType = yield call(securityAPI.getCaptchaUrl)
+	const captchaUrl = response.url
 	yield put(getCaptchaUrlSuccess(captchaUrl))
 }
 
 export function* getAuthUserData() {
 	const data: AuthUserDataType = yield call(authAPI.setAuth)
+	let {id, email, login} = data.data
 	if (data.resultCode === 0) {
-		let {id, email, login} = data.data
 		yield put(setAuthUserData(id, email, login, true))
+	} else {
+		yield put(setAuthUserData(id, email, login, false))
 	}
 }
 

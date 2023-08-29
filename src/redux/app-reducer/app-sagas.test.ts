@@ -1,10 +1,10 @@
 import {initializeApp} from "redux/app-reducer/app-sagas";
-import {call} from "redux-saga/effects";
+import {call, put} from "redux-saga/effects";
 import {getAuthUserData} from "redux/auth-reducer/auth-sagas";
+import {initializedSuccess} from "redux/app-reducer/app-reducer";
 
 test('initializeApp', () => {
 	const gen = initializeApp()
-	const result = gen.next()
-	expect(result.value).toEqual(call(getAuthUserData))
-
+	expect(gen.next().value).toEqual(call(getAuthUserData))
+	expect(gen.next().value).toEqual(put(initializedSuccess()))
 })

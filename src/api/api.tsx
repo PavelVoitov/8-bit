@@ -34,7 +34,8 @@ export const authAPI = {
 			.then(res => res.data)
 	},
 	logout() {
-		return instance.delete('/auth/login')
+		return instance.delete<AuthUserDataType>('/auth/login')
+			.then(res => res.data)
 	}
 }
 
@@ -67,6 +68,7 @@ export const profileAPI = {
 export const securityAPI = {
 	getCaptchaUrl() {
 		return instance.get(`security/get-captcha-url`)
+			.then(res => res.data)
 	}
 }
 
