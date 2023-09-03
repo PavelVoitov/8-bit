@@ -1,20 +1,19 @@
 import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {
-	getStatus,
-	getUserProfile,
-	ProfilePropsType,
-	savePhoto, saveProfile,
-	setUserProfile,
-	updateStatus
-} from "redux/profile-reducer/profile-reducer";
-
+import {ProfilePropsType, setUserProfile} from "redux/profile-reducer/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {ReducerPropsType} from "redux/redux-store";
 import {DataFromFormDataType} from "components/Profile/MyPosts/ProfileInfo/ProfileDataForm/ProfileDataForm";
 import s from './ProfileContainer.module.css'
+import {
+	getStatusAC,
+	getUserProfileAC,
+	savePhotoAC,
+	saveProfileAC,
+	updateStatusAC
+} from "redux/profile-reducer/profile-sagas";
 
 
 type MapStateToPropsType = {
@@ -27,11 +26,11 @@ type MapStateToPropsType = {
 
 export type ProfileContainerPropsType = MapStateToPropsType & {
 	setUserProfile: (profile: ProfilePropsType) => void
-	getUserProfile: (userId: string) => void
-	getStatus: (status: string) => void
-	updateStatus: (status: string) => void
-	savePhoto: (file: File) => void
-	saveProfile: (formData: DataFromFormDataType) => void
+	getUserProfileAC: (userId: string) => void
+	getStatusAC: (status: string) => void
+	updateStatusAC: (status: string) => void
+	savePhotoAC: (file: File) => void
+	saveProfileAC: (formData: DataFromFormDataType) => void
 }
 
 type PathParamsProps = {
@@ -50,8 +49,8 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
 				this.props.history.push('/login')
 			}
 		}
-		this.props.getUserProfile(userId)
-		this.props.getStatus(userId)
+		this.props.getUserProfileAC(userId)
+		this.props.getStatusAC(userId)
 	}
 
 	componentDidMount() {
@@ -71,9 +70,9 @@ class ProfileContainer extends React.Component<CommonPropsType, {}> {
 									 isOwner={!this.props.match.params.userId}
 									 profile={this.props.profile}
 									 status={this.props.status}
-									 updateStatus={this.props.updateStatus}
-									 savePhoto={this.props.savePhoto}
-									 saveProfile={this.props.saveProfile}
+									 updateStatus={this.props.updateStatusAC}
+									 savePhoto={this.props.savePhotoAC}
+									 saveProfile={this.props.saveProfileAC}
 									 isEditMode={this.props.isEditMode}
 					/>
 				</div>
@@ -96,11 +95,11 @@ let mapStateToProps = (state: ReducerPropsType) => {
 export default compose<React.ComponentType>(connect(mapStateToProps,
 		{
 			setUserProfile,
-			getUserProfile,
-			getStatus,
-			updateStatus,
-			savePhoto,
-			saveProfile
+			getUserProfileAC,
+			getStatusAC,
+			updateStatusAC,
+			savePhotoAC,
+			saveProfileAC
 		}),
 	withRouter,
 )(ProfileContainer)

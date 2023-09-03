@@ -45,22 +45,25 @@ export const profileAPI = {
 			.then(response => response.data)
 	},
 	getStatus(userId: string) {
-		return instance.get(`profile/status/${userId}`)
+		return instance.get<string>(`profile/status/${userId}`)
+			.then(res => res.data)
 	},
 	updateStatus(status: string) {
-		return instance.put('profile/status', {status})
+		return instance.put<followAPIType>('profile/status', {status})
+			.then(res => res.data)
 	},
 	savePhoto(photoFile: File) {
 		const formData = new FormData()
 		formData.append('image', photoFile)
-		return instance.put('profile/photo', formData, {
+		return instance.put<SavePhotoResponseType>('profile/photo', formData, {
 			headers: {
 				"Content-Type": "multipart/form-data"
 			}
 		})
+			.then(res => res.data)
 	},
 	saveProfile(formData: DataFromFormDataType) {
-		return instance.put('profile', formData)
+		return instance.put<ProfileResponseType>('profile', formData)
 			.then(res => res.data)
 	}
 }
@@ -72,11 +75,25 @@ export const securityAPI = {
 	}
 }
 
+export type ProfileResponseType = followAPIType
+
 export type followAPIType = {
 	resultCode: ResultCodeEnum
 	messages: string[],
 	data: {}
 }
+
+export type SavePhotoResponseType = {
+	resultCode: ResultCodeEnum
+	messages: string[],
+		data: {
+			photos: {
+				small: string,
+				large: string
+			}
+	}
+}
+
 export enum ResultCodeEnum {
 	Success,
 	Error,
@@ -90,11 +107,11 @@ export type CaptchaUrlType = {
 export type AuthUserDataType = {
 	resultCode: ResultCodeEnum
 	messages: string[],
-		data: {
+	data: {
 		id: string
 		email: string
 		login: string
-}
+	}
 }
 
 

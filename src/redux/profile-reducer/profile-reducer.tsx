@@ -1,9 +1,3 @@
-import {Dispatch} from "redux";
-import {profileAPI, usersAPI} from "api/api";
-import {DataFromFormDataType} from "components/Profile/MyPosts/ProfileInfo/ProfileDataForm/ProfileDataForm";
-import {AppThunk} from "redux/redux-store";
-import {stopSubmit} from "redux-form";
-
 export type ContactsType = {
 	"github": string
 	"vk": string
@@ -114,7 +108,7 @@ export const profileReducer = (state: ProfilePagePropsType = initialState, actio
 				...state,
 				posts: state.posts.filter(p => p.id !== action.postId)
 			}
-		case "profile/SAVE-PHOTO":
+		case "profile/SAVE-PHOTO-SUCCESS":
 			return {
 				...state,
 				profile: {...state.profile, photos: action.photos},
@@ -150,52 +144,11 @@ export const deletePost = (postId: number) => ({
 	type: "profile/DELETE-POST",
 	postId
 } as const)
-export const savePhotoSuccess = (photos: { small: string; large: string; }) => ({
-	type: "profile/SAVE-PHOTO",
+export const savePhotoSuccess = (photos: { small: string; large: string; }) => (
+	{type: "profile/SAVE-PHOTO-SUCCESS",
 	photos
 } as const)
 export const setEditModeSuccess = (isEditMode: boolean) => ({
 	type: "profile/SET-EDIT-MODE",
 	isEditMode
 } as const)
-
-
-//thunks
-export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
-	const data = await usersAPI.getProfile(userId)
-	dispatch(setUserProfile(data))
-}
-export const getStatus = (status: string) => async (dispatch: Dispatch) => {
-	const data = await profileAPI.getStatus(status)
-	dispatch(setStatus(data.data))
-}
-export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
-	try {
-		const data = await profileAPI.updateStatus(status)
-		if (data.data.resultCode === 0) {
-			dispatch(setStatus(status))
-		}
-	} catch (error) {
-	}
-}
-export const savePhoto = (file: File) => async (dispatch: Dispatch) => {
-	const data = await profileAPI.savePhoto(file)
-	if (data.data.resultCode === 0) {
-		dispatch(savePhotoSuccess(data.data.data.photos))
-	}
-}
-export const saveProfile = (formData: DataFromFormDataType): AppThunk => async (dispatch, getState) => {
-	const userId = getState().auth.id
-	const data = await profileAPI.saveProfile(formData)
-	if (data.resultCode === 0 && userId) {
-		await dispatch(getUserProfile(userId))
-		dispatch(setEditModeSuccess(false))
-	} else {
-		const errorMessage = data.messages[0]
-		const contactsName = errorMessage.split('>')[1].split(')')[0];
-		const modified = contactsName.toLowerCase();
-		dispatch(stopSubmit('edit-profile', {"contacts": {[modified]: "Ошибка в URL: " + contactsName}}))
-		dispatch(setEditModeSuccess(true))
-
-	}
-}

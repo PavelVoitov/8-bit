@@ -10,6 +10,7 @@ import {appReducer, InitializedAppActionType} from "redux/app-reducer/app-reduce
 import createSagaMiddleware from 'redux-saga';
 import {authWatcherSagas} from "redux/auth-reducer/auth-sagas";
 import {appWatcherSagas} from "redux/app-reducer/app-sagas";
+import {profileWatcherSagas} from "redux/profile-reducer/profile-sagas";
 
 export type ReducerPropsType = ReturnType<typeof reducers>
 
@@ -42,6 +43,7 @@ sagaMiddleware.run(rootWatcher)
 function* rootWatcher() {
 	yield* appWatcherSagas()
 	yield* authWatcherSagas()
+	yield* profileWatcherSagas()
 }
 
 export type AppActionsType = MessagesActionType | ProfileActionsTypes | UsersActionType | InitializedAppActionType
